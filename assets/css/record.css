@@ -1,87 +1,739 @@
-.record {
+/* =========================================================
+   Sleep Insight
 
-    display: flex;
+   record.css
+   Sleep Record System v2.0
 
-    flex-direction: column;
+   ========================================================= */
 
-    gap: 24px;
+
+
+/* =========================================================
+   Record Page
+   ========================================================= */
+
+
+   .record {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+
+    gap:
+
+
+        32px;
+
 
 }
+
+
+
+
+
+
+
+
+/* =========================================================
+   Header
+   ========================================================= */
+
+
+.record-header {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+
+    gap:
+
+
+        8px;
+
+
+}
+
+
+
+.record-header h1 {
+
+
+    font-size:
+
+
+        34px;
+
+
+
+    font-weight:
+
+
+        800;
+
+
+
+}
+
+
+
+.record-header p {
+
+
+    color:
+
+
+        var(--text-secondary);
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Form Card
+   ========================================================= */
+
+
+.record-form {
+
+
+    background:
+
+
+        var(--surface);
+
+
+
+    border:
+
+
+        1px solid
+        var(--border-color);
+
+
+
+    border-radius:
+
+
+        var(--radius-lg);
+
+
+
+    padding:
+
+
+        32px;
+
+
+
+    box-shadow:
+
+
+        var(--shadow-sm);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Form Layout
+   ========================================================= */
+
 
 .form-grid {
 
-    display: grid;
 
-    grid-template-columns: repeat(2,1fr);
+    display:grid;
 
-    gap:20px;
 
-    margin-bottom:20px;
+
+    grid-template-columns:
+
+
+        repeat(
+            2,
+            1fr
+        );
+
+
+
+    gap:
+
+
+        24px;
+
+
 
 }
 
-.form-item{
+
+
+
+
+.form-group {
+
 
     display:flex;
+
 
     flex-direction:column;
 
-    gap:8px;
 
-    margin-bottom:20px;
 
-}
+    gap:
 
-.form-item label{
 
-    font-weight:600;
+        8px;
 
-}
 
-textarea{
-
-    min-height:120px;
 
 }
 
-#record-list{
+
+
+.form-group label {
+
+
+    font-size:
+
+
+        14px;
+
+
+
+    font-weight:
+
+
+        600;
+
+
+
+    color:
+
+
+        var(--text-secondary);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Sleep Quality Selector
+   ========================================================= */
+
+
+.quality-selector {
+
 
     display:flex;
 
-    flex-direction:column;
 
-    gap:12px;
+
+    gap:
+
+
+        12px;
+
+
 
 }
 
-.record-row{
+
+
+.quality-item {
+
+
+    width:
+
+
+        42px;
+
+
+
+    height:
+
+
+        42px;
+
+
 
     display:flex;
 
-    justify-content:space-between;
+
 
     align-items:center;
 
-    padding:16px;
 
-    border:1px solid var(--border-color);
 
-    border-radius:var(--radius-md);
+    justify-content:center;
+
+
+
+    border-radius:
+
+
+        50%;
+
+
+
+    background:
+
+
+        var(--surface-soft);
+
+
+
+    cursor:pointer;
+
+
+
+    transition:
+
+
+        .2s;
+
+
 
 }
 
-.record-info{
+
+
+
+.quality-item:hover {
+
+
+    transform:
+
+
+        translateY(-3px);
+
+
+
+    background:
+
+
+        rgba(79,125,243,.12);
+
+
+}
+
+
+
+
+
+.quality-item.active {
+
+
+    background:
+
+
+        var(--primary);
+
+
+
+    color:white;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Submit Button
+   ========================================================= */
+
+
+.record-submit {
+
+
+    margin-top:
+
+
+        28px;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   History Section
+   ========================================================= */
+
+
+.record-history {
+
 
     display:flex;
 
-    gap:20px;
+
+
+    flex-direction:column;
+
+
+
+    gap:
+
+
+        16px;
+
+
 
 }
 
-.delete-btn{
 
-    color:red;
 
-    cursor:pointer;
+
+
+
+
+
+/* =========================================================
+   Timeline Card
+   ========================================================= */
+
+
+.record-item {
+
+
+    position:
+
+
+        relative;
+
+
+
+    display:flex;
+
+
+
+    justify-content:
+
+
+        space-between;
+
+
+
+    align-items:
+
+
+        center;
+
+
+
+    padding:
+
+
+        22px 26px;
+
+
+
+    background:
+
+
+        var(--surface);
+
+
+
+    border:
+
+
+        1px solid
+        var(--border-color);
+
+
+
+    border-radius:
+
+
+        var(--radius-lg);
+
+
+
+    box-shadow:
+
+
+        var(--shadow-sm);
+
+
+
+    transition:
+
+
+        .25s;
+
+
+
+}
+
+
+
+
+.record-item:hover {
+
+
+    transform:
+
+
+        translateY(-3px);
+
+
+
+    box-shadow:
+
+
+        var(--shadow-md);
+
+
+
+}
+
+
+
+
+
+
+
+
+.record-date {
+
+
+    font-size:
+
+
+        14px;
+
+
+
+    color:
+
+
+        var(--text-secondary);
+
+
+}
+
+
+
+
+
+.record-duration {
+
+
+    font-size:
+
+
+        24px;
+
+
+
+    font-weight:
+
+
+        800;
+
+
+
+}
+
+
+
+
+
+
+.record-score {
+
+
+    padding:
+
+
+        6px 14px;
+
+
+
+    border-radius:
+
+
+        999px;
+
+
+
+    background:
+
+
+        rgba(79,125,243,.1);
+
+
+
+    color:
+
+
+        var(--primary);
+
+
+
+    font-weight:
+
+
+        600;
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Empty
+   ========================================================= */
+
+
+.record-empty {
+
+
+    padding:
+
+
+        60px;
+
+
+
+    text-align:
+
+
+        center;
+
+
+
+    color:
+
+
+        var(--text-secondary);
+
+
+
+    background:
+
+
+        var(--surface);
+
+
+
+    border-radius:
+
+
+        var(--radius-lg);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+
+@media(max-width:900px){
+
+
+
+    .form-grid {
+
+
+        grid-template-columns:
+
+
+            1fr;
+
+
+    }
+
+
+}
+
+
+
+
+
+@media(max-width:600px){
+
+
+
+    .record-item {
+
+
+        flex-direction:
+
+
+            column;
+
+
+
+        align-items:
+
+
+            flex-start;
+
+
+
+        gap:
+
+
+            12px;
+
+
+    }
+
+
 
 }
