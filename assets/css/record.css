@@ -2,10 +2,9 @@
    Sleep Insight
 
    record.css
-   Sleep Record System v2.0
+   Sleep Record System v3.0
 
    ========================================================= */
-
 
 
 /* =========================================================
@@ -59,6 +58,7 @@
         8px;
 
 
+
 }
 
 
@@ -80,6 +80,13 @@
 
 
 
+    letter-spacing:
+
+
+        -1px;
+
+
+
 }
 
 
@@ -91,6 +98,7 @@
 
 
         var(--text-secondary);
+
 
 
 }
@@ -143,6 +151,25 @@
 
 
         var(--shadow-sm);
+
+
+
+}
+
+
+
+
+
+
+
+
+.record-form:hover {
+
+
+    box-shadow:
+
+
+        var(--shadow-md);
 
 
 
@@ -245,6 +272,103 @@
 
 
 /* =========================================================
+   Inputs
+   ========================================================= */
+
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+
+
+    width:
+
+
+        100%;
+
+
+
+    padding:
+
+
+        14px 16px;
+
+
+
+    border:
+
+
+        1px solid
+        var(--border-color);
+
+
+
+    border-radius:
+
+
+        var(--radius-md);
+
+
+
+    background:
+
+
+        var(--surface);
+
+
+
+    color:
+
+
+        var(--text-primary);
+
+
+
+    transition:
+
+
+        .25s;
+
+
+
+}
+
+
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+
+
+    outline:none;
+
+
+
+    border-color:
+
+
+        var(--primary);
+
+
+
+    box-shadow:
+
+
+        0 0 0 4px
+        rgba(79,125,243,.12);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
    Sleep Quality Selector
    ========================================================= */
 
@@ -267,20 +391,21 @@
 
 
 
+
 .quality-item {
 
 
     width:
 
 
-        42px;
+        44px;
 
 
 
     height:
 
 
-        42px;
+        44px;
 
 
 
@@ -288,11 +413,17 @@
 
 
 
-    align-items:center;
+    align-items:
+
+
+        center;
 
 
 
-    justify-content:center;
+    justify-content:
+
+
+        center;
 
 
 
@@ -317,11 +448,12 @@
     transition:
 
 
-        .2s;
+        .25s;
 
 
 
 }
+
 
 
 
@@ -342,6 +474,7 @@
         rgba(79,125,243,.12);
 
 
+
 }
 
 
@@ -358,7 +491,18 @@
 
 
 
-    color:white;
+    color:
+
+
+        white;
+
+
+
+    box-shadow:
+
+
+        0 8px 20px
+        rgba(79,125,243,.3);
 
 
 
@@ -407,7 +551,10 @@
 
 
 
-    flex-direction:column;
+    flex-direction:
+
+
+        column;
 
 
 
@@ -428,18 +575,11 @@
 
 
 /* =========================================================
-   Timeline Card
+   Record Item
    ========================================================= */
 
 
 .record-item {
-
-
-    position:
-
-
-        relative;
-
 
 
     display:flex;
@@ -463,7 +603,7 @@
     padding:
 
 
-        22px 26px;
+        24px 28px;
 
 
 
@@ -508,6 +648,7 @@
 
 
 
+
 .record-item:hover {
 
 
@@ -534,6 +675,37 @@
 
 
 
+/* =========================================================
+   Record Info
+   ========================================================= */
+
+
+.record-info {
+
+
+    display:flex;
+
+
+
+    flex-direction:
+
+
+        column;
+
+
+
+    gap:
+
+
+        8px;
+
+
+
+}
+
+
+
+
 .record-date {
 
 
@@ -550,8 +722,8 @@
         var(--text-secondary);
 
 
-}
 
+}
 
 
 
@@ -562,7 +734,7 @@
     font-size:
 
 
-        24px;
+        28px;
 
 
 
@@ -573,7 +745,51 @@
 
 
 
+    letter-spacing:
+
+
+        -1px;
+
+
+
 }
+
+
+
+
+
+
+
+
+/* =========================================================
+   Right Actions
+   ========================================================= */
+
+
+.record-actions {
+
+
+    display:flex;
+
+
+
+    align-items:
+
+
+        center;
+
+
+
+    gap:
+
+
+        12px;
+
+
+
+}
+
+
 
 
 
@@ -586,7 +802,7 @@
     padding:
 
 
-        6px 14px;
+        7px 16px;
 
 
 
@@ -600,7 +816,7 @@
     background:
 
 
-        rgba(79,125,243,.1);
+        rgba(79,125,243,.12);
 
 
 
@@ -614,7 +830,15 @@
     font-weight:
 
 
-        600;
+        700;
+
+
+
+    font-size:
+
+
+        14px;
+
 
 
 }
@@ -627,7 +851,147 @@
 
 
 /* =========================================================
-   Empty
+   Delete Button
+   ========================================================= */
+
+
+.delete-btn {
+
+
+    display:inline-flex;
+
+
+
+    align-items:
+
+
+        center;
+
+
+
+    justify-content:
+
+
+        center;
+
+
+
+    padding:
+
+
+        8px 18px;
+
+
+
+    border-radius:
+
+
+        999px;
+
+
+
+    border:
+
+
+        1px solid
+        rgba(239,68,68,.25);
+
+
+
+    background:
+
+
+        rgba(239,68,68,.08);
+
+
+
+    color:
+
+
+        var(--danger);
+
+
+
+    font-size:
+
+
+        14px;
+
+
+
+    font-weight:
+
+
+        600;
+
+
+
+    cursor:pointer;
+
+
+
+    transition:
+
+
+        .25s;
+
+
+
+}
+
+
+
+
+.delete-btn:hover {
+
+
+    background:
+
+
+        var(--danger);
+
+
+
+    color:
+
+
+        white;
+
+
+
+    transform:
+
+
+        translateY(-2px);
+
+
+
+}
+
+
+
+
+.delete-btn:active {
+
+
+    transform:
+
+
+        scale(.96);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Empty State
    ========================================================= */
 
 
@@ -637,7 +1001,7 @@
     padding:
 
 
-        60px;
+        70px 20px;
 
 
 
@@ -659,6 +1023,14 @@
 
 
         var(--surface);
+
+
+
+    border:
+
+
+        1px solid
+        var(--border-color);
 
 
 
@@ -696,10 +1068,15 @@
             1fr;
 
 
+
     }
 
 
+
 }
+
+
+
 
 
 
@@ -722,18 +1099,55 @@
         align-items:
 
 
-            flex-start;
+            stretch;
 
 
 
         gap:
 
 
-            12px;
+            18px;
+
 
 
     }
 
+
+
+
+    .record-actions {
+
+
+        justify-content:
+
+
+            space-between;
+
+
+
+        width:
+
+
+            100%;
+
+
+
+    }
+
+
+
+
+    .record-duration {
+
+
+        font-size:
+
+
+            24px;
+
+
+
+    }
 
 
 }
