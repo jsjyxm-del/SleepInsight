@@ -1,0 +1,952 @@
+/* =========================================================
+   Sleep Insight
+
+   statistics.css
+   Statistics System v2.0
+
+   ========================================================= */
+
+
+
+/* =========================================================
+   Statistics Container
+   ========================================================= */
+
+
+   .statistics {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+
+    gap:
+
+
+        32px;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Header
+   ========================================================= */
+
+
+.statistics-header {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+
+    gap:
+
+
+        8px;
+
+
+
+}
+
+
+
+.statistics-header h1 {
+
+
+    font-size:
+
+
+        34px;
+
+
+
+    font-weight:
+
+
+        800;
+
+
+
+    letter-spacing:
+
+
+        -1px;
+
+
+
+}
+
+
+
+.statistics-header p {
+
+
+    color:
+
+
+        var(--text-secondary);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Summary Cards
+   ========================================================= */
+
+
+.summary-grid {
+
+
+    display:grid;
+
+
+
+    grid-template-columns:
+
+
+        repeat(
+            4,
+            1fr
+        );
+
+
+
+    gap:
+
+
+        24px;
+
+
+
+}
+
+
+
+
+
+
+
+
+.summary-card {
+
+
+    background:
+
+
+        var(--surface);
+
+
+
+    border:
+
+
+        1px solid
+        var(--border-color);
+
+
+
+    border-radius:
+
+
+        var(--radius-lg);
+
+
+
+    padding:
+
+
+        26px;
+
+
+
+    box-shadow:
+
+
+        var(--shadow-sm);
+
+
+
+    transition:
+
+
+        .25s;
+
+
+
+}
+
+
+
+
+
+.summary-card:hover {
+
+
+    transform:
+
+
+        translateY(-4px);
+
+
+
+    box-shadow:
+
+
+        var(--shadow-md);
+
+
+
+}
+
+
+
+
+
+.summary-label {
+
+
+    font-size:
+
+
+        14px;
+
+
+
+    color:
+
+
+        var(--text-secondary);
+
+
+
+    margin-bottom:
+
+
+        12px;
+
+
+
+}
+
+
+
+.summary-value {
+
+
+    font-size:
+
+
+        36px;
+
+
+
+    font-weight:
+
+
+        800;
+
+
+
+}
+
+
+
+.summary-unit {
+
+
+    font-size:
+
+
+        14px;
+
+
+
+    color:
+
+
+        var(--text-secondary);
+
+
+
+    margin-left:
+
+
+        5px;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Main Analysis Area
+   ========================================================= */
+
+
+.statistics-content {
+
+
+    display:grid;
+
+
+
+    grid-template-columns:
+
+
+        2fr
+        1fr;
+
+
+
+    gap:
+
+
+        24px;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Chart Card
+   ========================================================= */
+
+
+.chart-card {
+
+
+    background:
+
+
+        var(--surface);
+
+
+
+    border:
+
+
+        1px solid
+        var(--border-color);
+
+
+
+    border-radius:
+
+
+        var(--radius-lg);
+
+
+
+    padding:
+
+
+        30px;
+
+
+
+    box-shadow:
+
+
+        var(--shadow-sm);
+
+
+
+}
+
+
+
+
+
+.chart-card canvas {
+
+
+    width:
+
+
+        100% !important;
+
+
+
+    height:
+
+
+        340px !important;
+
+
+
+    margin-top:
+
+
+        20px;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Analysis Card
+   ========================================================= */
+
+
+.analysis-card {
+
+
+    background:
+
+
+        linear-gradient(
+            145deg,
+            #F8FAFF,
+            #EEF2FF
+        );
+
+
+
+    border-radius:
+
+
+        var(--radius-lg);
+
+
+
+    padding:
+
+
+        30px;
+
+
+
+}
+
+
+
+
+
+
+
+
+.analysis-title {
+
+
+    font-size:
+
+
+        20px;
+
+
+
+    font-weight:
+
+
+        700;
+
+
+
+    margin-bottom:
+
+
+        20px;
+
+
+
+}
+
+
+
+.analysis-item {
+
+
+    display:flex;
+
+
+
+    justify-content:
+
+
+        space-between;
+
+
+
+    align-items:
+
+
+        center;
+
+
+
+    padding:
+
+
+        14px 0;
+
+
+
+    border-bottom:
+
+
+        1px solid
+        rgba(148,163,184,.2);
+
+
+
+}
+
+
+
+
+
+.analysis-item:last-child {
+
+
+    border-bottom:
+
+
+        none;
+
+
+
+}
+
+
+
+
+
+.analysis-name {
+
+
+    color:
+
+
+        var(--text-secondary);
+
+
+
+}
+
+
+
+
+
+.analysis-value {
+
+
+    font-weight:
+
+
+        700;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Sleep Trend
+   ========================================================= */
+
+
+.trend-card {
+
+
+    background:
+
+
+        var(--surface);
+
+
+
+    border-radius:
+
+
+        var(--radius-lg);
+
+
+
+    padding:
+
+
+        30px;
+
+
+
+    border:
+
+
+        1px solid
+        var(--border-color);
+
+
+
+}
+
+
+
+
+
+.trend-header {
+
+
+    display:flex;
+
+
+
+    justify-content:
+
+
+        space-between;
+
+
+
+    align-items:
+
+
+        center;
+
+
+
+    margin-bottom:
+
+
+        20px;
+
+
+
+}
+
+
+
+
+
+
+
+
+.trend-status {
+
+
+    padding:
+
+
+        6px 14px;
+
+
+
+    border-radius:
+
+
+        999px;
+
+
+
+    background:
+
+
+        rgba(34,197,94,.12);
+
+
+
+    color:
+
+
+        var(--success);
+
+
+
+    font-size:
+
+
+        14px;
+
+
+
+    font-weight:
+
+
+        600;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Score Indicator
+   ========================================================= */
+
+
+.score-indicator {
+
+
+    display:flex;
+
+
+
+    align-items:center;
+
+
+
+    gap:
+
+
+        20px;
+
+
+
+}
+
+
+
+
+
+.score-circle {
+
+
+    width:
+
+
+        110px;
+
+
+
+    height:
+
+
+        110px;
+
+
+
+    border-radius:
+
+
+        50%;
+
+
+
+    display:flex;
+
+
+
+    align-items:
+
+
+        center;
+
+
+
+    justify-content:
+
+
+        center;
+
+
+
+    background:
+
+
+        linear-gradient(
+            135deg,
+            #4F7DF3,
+            #6366F1
+        );
+
+
+
+    color:
+
+
+        white;
+
+
+
+    font-size:
+
+
+        32px;
+
+
+
+    font-weight:
+
+
+        800;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Empty State
+   ========================================================= */
+
+
+.statistics-empty {
+
+
+    padding:
+
+
+        70px 20px;
+
+
+
+    text-align:
+
+
+        center;
+
+
+
+    color:
+
+
+        var(--text-secondary);
+
+
+
+    background:
+
+
+        var(--surface);
+
+
+
+    border-radius:
+
+
+        var(--radius-lg);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+
+@media(max-width:1200px){
+
+
+
+    .summary-grid {
+
+
+        grid-template-columns:
+
+
+            repeat(
+                2,
+                1fr
+            );
+
+
+    }
+
+
+
+
+    .statistics-content {
+
+
+        grid-template-columns:
+
+
+            1fr;
+
+
+    }
+
+
+}
+
+
+
+
+
+
+@media(max-width:700px){
+
+
+
+    .summary-grid {
+
+
+        grid-template-columns:
+
+
+            1fr;
+
+
+    }
+
+
+
+}
