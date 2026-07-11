@@ -1,0 +1,433 @@
+/* =========================================================
+   Sleep Insight
+
+   dark.css
+   Dark Mode System v1.0
+
+   ========================================================= */
+
+
+
+/* =========================================================
+   Dark Theme Variables
+   ========================================================= */
+
+
+   .dark {
+
+
+    --background:
+        #0F172A;
+
+
+
+    --surface:
+        #111827;
+
+
+
+    --surface-soft:
+        #1E293B;
+
+
+
+    --surface-hover:
+        #263449;
+
+
+
+    --text-primary:
+        #F8FAFC;
+
+
+
+    --text-secondary:
+        #CBD5E1;
+
+
+
+    --text-light:
+        #94A3B8;
+
+
+
+    --border-color:
+        rgba(148,163,184,.18);
+
+
+
+    --shadow-sm:
+        0 1px 3px
+        rgba(0,0,0,.35);
+
+
+
+    --shadow-md:
+        0 8px 20px
+        rgba(0,0,0,.4);
+
+
+
+    --shadow-lg:
+        0 20px 40px
+        rgba(0,0,0,.45);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Global
+   ========================================================= */
+
+
+.dark body {
+
+
+    background:
+
+
+        var(--background);
+
+
+
+    color:
+
+
+        var(--text-primary);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Sidebar
+   ========================================================= */
+
+
+.dark #sidebar {
+
+
+    background:
+
+
+        var(--surface);
+
+
+
+    border-color:
+
+
+        var(--border-color);
+
+
+
+}
+
+
+
+
+
+
+
+
+.dark nav a {
+
+
+    color:
+
+
+        var(--text-secondary);
+
+
+
+}
+
+
+
+.dark nav a:hover {
+
+
+    background:
+
+
+        var(--surface-hover);
+
+
+
+    color:
+
+
+        white;
+
+
+
+}
+
+
+
+.dark nav a.active {
+
+
+    background:
+
+
+        rgba(79,125,243,.18);
+
+
+
+    color:
+
+
+        #93C5FD;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Cards
+   ========================================================= */
+
+
+.dark .card,
+.dark .stat-card,
+.dark .detail-card,
+.dark .record-item,
+.dark .chart-card,
+.dark .summary-card,
+.dark .trend-card {
+
+
+    background:
+
+
+        var(--surface);
+
+
+
+    border-color:
+
+
+        var(--border-color);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Glass
+   ========================================================= */
+
+
+.dark .card-glass {
+
+
+    background:
+
+
+        rgba(15,23,42,.75);
+
+
+
+    border-color:
+
+
+        rgba(255,255,255,.08);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Inputs
+   ========================================================= */
+
+
+.dark input,
+.dark textarea,
+.dark select {
+
+
+    background:
+
+
+        var(--surface);
+
+
+
+    color:
+
+
+        var(--text-primary);
+
+
+
+    border-color:
+
+
+        var(--border-color);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Dashboard Score Card
+   ========================================================= */
+
+
+.dark .sleep-score-card {
+
+
+    background:
+
+
+        linear-gradient(
+            135deg,
+            #1E293B,
+            #312E81
+        );
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Insight Card
+   ========================================================= */
+
+
+.dark .insight-card {
+
+
+    background:
+
+
+        linear-gradient(
+            145deg,
+            #1E293B,
+            #172554
+        );
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Chart Area
+   ========================================================= */
+
+
+.dark canvas {
+
+
+    filter:
+
+
+        brightness(.9);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Scrollbar
+   ========================================================= */
+
+
+.dark::-webkit-scrollbar {
+
+
+    width:
+
+
+        8px;
+
+
+
+}
+
+
+
+.dark::-webkit-scrollbar-thumb {
+
+
+    background:
+
+
+        #334155;
+
+
+
+    border-radius:
+
+
+        10px;
+
+
+
+}
