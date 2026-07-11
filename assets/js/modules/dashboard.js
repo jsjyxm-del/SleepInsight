@@ -2,7 +2,8 @@
  * ==========================================
  * Sleep Insight
  * dashboard.js
- * Dashboard 首页
+ *
+ * Dashboard Experience v2
  * ==========================================
  */
 
@@ -24,11 +25,6 @@ export const Dashboard = {
      * 页面渲染
      */
     render(){
-
-
-
-        const todaySleep =
-            SleepAnalytics.getTodaySleep();
 
 
 
@@ -65,103 +61,32 @@ export const Dashboard = {
 
 
 
-
         return `
+
 
 
 <section class="dashboard">
 
 
 
-<h1 class="page-title">
 
-Sleep Insight Dashboard
+
+
+<!-- Welcome -->
+
+<div class="dashboard-header">
+
+
+<h1>
+
+Good evening 🌙
 
 </h1>
 
 
-
-
-
-<div class="dashboard-grid">
-
-
-
-
-
-<div class="card stat-card">
-
-
-<h3>
-
-今日睡眠
-
-</h3>
-
-
-<div class="number">
-
-${todaySleep}
-
-h
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-<div class="card stat-card">
-
-
-<h3>
-
-平均睡眠
-
-</h3>
-
-
-<div class="number">
-
-${averageSleep}
-
-h
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-<div class="card stat-card">
-
-
-<h3>
-
-睡眠评分
-
-</h3>
-
-
-<div class="number">
-
-${score}
-
-</div>
-
-
-
 <p>
 
-${status}
+今天也来看看你的睡眠状态
 
 </p>
 
@@ -173,29 +98,103 @@ ${status}
 
 
 
-<div class="card stat-card">
+
+<!-- Score Hero -->
 
 
-<h3>
+<div class="sleep-score-card">
+
+
+<div class="sleep-score">
+
+${score}
+
+</div>
+
+
+
+<div class="sleep-score-label">
+
+Sleep Score
+
+</div>
+
+
+
+<div class="sleep-status">
+
+${status}
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Metrics -->
+
+
+<div class="dashboard-grid">
+
+
+
+<div class="stat-card">
+
+
+<div class="stat-title">
+
+平均睡眠
+
+</div>
+
+
+
+<div class="stat-value">
+
+${averageSleep}
+
+<span class="stat-unit">
+h
+</span>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="stat-card">
+
+
+<div class="stat-title">
 
 连续记录
 
-</h3>
+</div>
 
 
-<div class="number">
+
+<div class="stat-value">
 
 ${days}
 
+<span class="stat-unit">
 天
+</span>
+
 
 </div>
-
-
-</div>
-
-
-
 
 
 </div>
@@ -205,75 +204,117 @@ ${days}
 
 
 
+<div class="stat-card">
+
+
+<div class="stat-title">
+
+最近状态
+
+</div>
 
 
 
-<div class="card detail-card">
+<div class="stat-value">
+
+${status}
+
+</div>
 
 
-<h2>
+</div>
 
-今日睡眠详情
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Detail -->
+
+
+<div class="dashboard-content">
+
+
+
+<div class="card">
+
+
+<h2 class="section-title">
+
+今日睡眠
 
 </h2>
 
 
 
 ${
-    todayDetail
-    ?
+todayDetail
 
-    `
+?
 
-    <p>
+`
 
-    睡眠时间：
+<p>
 
-    ${todayDetail.bedtime || "--"}
+🌙 入睡：
 
-    -
+${todayDetail.bedtime || "--"}
 
-    ${todayDetail.wakeTime || "--"}
-
-    </p>
+</p>
 
 
 
-    <p>
+<p>
 
-    睡眠时长：
+☀️ 起床：
 
-    ${todayDetail.duration}
+${todayDetail.wakeTime || "--"}
 
-    h
-
-    </p>
+</p>
 
 
 
-    <p>
+<p>
 
-    睡眠质量：
+⏱ 时长：
 
-    ⭐
+${todayDetail.duration}
 
-    ${todayDetail.quality}/10
+h
 
-    </p>
+</p>
 
-    `
 
-    :
 
-    `
+<p>
 
-    <p>
+⭐ 质量：
 
-    今日暂无睡眠记录
+${todayDetail.quality}/10
 
-    </p>
+</p>
 
-    `
+
+`
+
+:
+
+`
+
+<p>
+
+今天暂无睡眠记录
+
+</p>
+
+`
 
 }
 
@@ -287,85 +328,36 @@ ${
 
 
 
+<div class="insight-card">
 
 
+<h2 class="section-title">
 
-<div class="card detail-card">
-
-
-<h2>
-
-最近一次睡眠
+AI Insight
 
 </h2>
 
 
-
+<p>
 
 ${
-    latestRecord
-    ?
 
-    `
+score >= 85
 
+?
 
-    <p>
+"你的睡眠状态很好，继续保持稳定作息 🌙"
 
-    日期：
+:
 
-    ${latestRecord.date}
-
-    </p>
-
-
-
-    <p>
-
-    时长：
-
-    ${latestRecord.duration}
-
-    h
-
-    </p>
-
-
-
-    <p>
-
-    质量：
-
-    ⭐
-
-    ${latestRecord.quality}/10
-
-    </p>
-
-
-
-    <p>
-
-    ${latestRecord.notes || ""}
-
-    </p>
-
-
-    `
-
-    :
-
-    `
-
-    <p>
-
-    暂无记录
-
-    </p>
-
-    `
+"建议保持固定睡眠时间，提高睡眠规律性"
 
 }
 
+</p>
+
+
+</div>
 
 
 
@@ -377,14 +369,18 @@ ${
 
 
 
+
+
+
+<!-- Chart -->
 
 
 <div class="card chart-card">
 
 
-<h2>
+<h2 class="section-title">
 
-最近睡眠趋势
+睡眠趋势
 
 </h2>
 
@@ -395,6 +391,9 @@ ${
 
 
 </div>
+
+
+
 
 
 
@@ -416,15 +415,14 @@ ${
 
 
 
+
     /**
-     * 页面初始化
+     * 初始化
      */
     init(){
 
 
-
         SleepChart.init();
-
 
 
     }

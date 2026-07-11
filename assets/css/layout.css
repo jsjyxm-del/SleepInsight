@@ -1,0 +1,395 @@
+/* =========================================================
+   Sleep Insight
+   layout.css
+
+   App Layout System v1.0
+   ========================================================= */
+
+
+/* =========================
+   Base
+   ========================= */
+
+
+   body {
+
+    font-family:
+        "Inter",
+        "SF Pro Display",
+        "PingFang SC",
+        "Microsoft YaHei",
+        sans-serif;
+
+
+    background:
+        var(--background);
+
+
+    color:
+        var(--text-primary);
+
+
+}
+
+
+
+
+
+/* =========================
+   Application Container
+   ========================= */
+
+
+#app {
+
+
+    display:flex;
+
+
+    min-height:100vh;
+
+
+}
+
+
+
+
+
+
+
+/* =========================
+   Sidebar
+   ========================= */
+
+
+#sidebar {
+
+
+    width:230px;
+
+
+    padding:24px 16px;
+
+
+    background:
+
+
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f8fafc 100%
+        );
+
+
+
+    border-right:
+
+
+        1px solid
+        var(--border-color);
+
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+}
+
+
+
+
+
+
+/* =========================
+   Logo
+   ========================= */
+
+
+.logo {
+
+
+    padding:
+
+
+        18px 16px 36px;
+
+
+}
+
+
+
+
+.logo h1 {
+
+
+    font-size:
+
+
+        var(--font-xl);
+
+
+
+    font-weight:
+
+
+        700;
+
+
+
+    letter-spacing:
+
+
+        -0.5px;
+
+
+
+    background:
+
+
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--sleep-purple)
+        );
+
+
+
+    -webkit-background-clip:text;
+
+
+    color:transparent;
+
+
+
+}
+
+
+
+
+
+
+
+/* =========================
+   Navigation
+   ========================= */
+
+
+nav {
+
+
+    flex:1;
+
+
+}
+
+
+
+nav ul {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:8px;
+
+
+}
+
+
+
+
+
+nav li {
+
+
+    margin:0;
+
+
+}
+
+
+
+
+
+
+nav a {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+
+    padding:
+
+
+        13px 16px;
+
+
+
+    border-radius:
+
+
+        var(--radius-md);
+
+
+
+    color:
+
+
+        var(--text-secondary);
+
+
+
+    font-size:
+
+
+        var(--font-md);
+
+
+
+    transition:
+
+
+        all
+        var(--transition-fast);
+
+
+
+}
+
+
+
+
+
+
+nav a:hover {
+
+
+    background:
+
+
+        var(--surface-hover);
+
+
+
+    color:
+
+
+        var(--primary);
+
+
+
+    transform:
+
+
+        translateX(4px);
+
+
+
+}
+
+
+
+
+
+
+
+/* =========================
+   Main Content
+   ========================= */
+
+
+#content {
+
+
+    flex:1;
+
+
+    padding:
+
+
+        40px 48px;
+
+
+
+    overflow-y:auto;
+
+
+
+}
+
+
+
+
+
+
+#view {
+
+
+    width:100%;
+
+
+    max-width:1200px;
+
+
+    margin:0 auto;
+
+
+
+    min-height:
+
+
+        calc(100vh - 80px);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================
+   Scrollbar
+   ========================= */
+
+
+#content::-webkit-scrollbar {
+
+
+    width:8px;
+
+
+}
+
+
+#content::-webkit-scrollbar-thumb {
+
+
+    background:
+
+
+        #CBD5E1;
+
+
+
+    border-radius:
+
+
+        20px;
+
+
+
+}

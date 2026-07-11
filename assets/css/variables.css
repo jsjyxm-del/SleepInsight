@@ -1,0 +1,209 @@
+/* =========================================================
+   Sleep Insight
+   variables.css
+   Design System v1.0
+   ========================================================= */
+
+
+   :root {
+
+
+    /* ===============================
+       Brand
+       =============================== */
+
+    --primary: #6366F1;
+
+    --primary-hover:#4F46E5;
+
+
+    --primary-light:#EEF2FF;
+
+
+
+    /* 睡眠主题色 */
+
+    --sleep-blue:#60A5FA;
+
+    --sleep-purple:#A78BFA;
+
+    --sleep-night:#312E81;
+
+
+
+    /* 状态 */
+
+    --success:#10B981;
+
+    --warning:#F59E0B;
+
+    --danger:#EF4444;
+
+
+
+
+    /* ===============================
+       Background
+       =============================== */
+
+
+    --background:#F8FAFC;
+
+
+    --surface:#FFFFFF;
+
+
+    --surface-soft:#F1F5F9;
+
+
+
+    --surface-hover:#EEF2FF;
+
+
+
+
+
+    /* ===============================
+       Text
+       =============================== */
+
+
+    --text-primary:#0F172A;
+
+
+    --text-secondary:#475569;
+
+
+    --text-light:#94A3B8;
+
+
+
+    /* ===============================
+       Border
+       =============================== */
+
+
+    --border-color:#E2E8F0;
+
+
+    --border-light:#F1F5F9;
+
+
+
+
+
+
+    /* ===============================
+       Shadow
+       =============================== */
+
+
+    --shadow-sm:
+
+    0 2px 6px rgba(15,23,42,.04);
+
+
+
+    --shadow-md:
+
+    0 8px 24px rgba(15,23,42,.08);
+
+
+
+    --shadow-lg:
+
+    0 20px 40px rgba(15,23,42,.12);
+
+
+
+    /* ===============================
+       Radius
+       =============================== */
+
+
+    --radius-sm:8px;
+
+
+    --radius-md:14px;
+
+
+    --radius-lg:20px;
+
+
+    --radius-xl:28px;
+
+
+
+
+
+    /* ===============================
+       Spacing
+       =============================== */
+
+
+    --space-xs:4px;
+
+
+    --space-sm:8px;
+
+
+    --space-md:16px;
+
+
+    --space-lg:24px;
+
+
+    --space-xl:32px;
+
+
+    --space-2xl:48px;
+
+
+
+
+
+    /* ===============================
+       Typography
+       =============================== */
+
+
+    --font-xs:.75rem;
+
+
+    --font-sm:.875rem;
+
+
+    --font-md:1rem;
+
+
+    --font-lg:1.25rem;
+
+
+    --font-xl:1.5rem;
+
+
+    --font-2xl:2rem;
+
+
+    --font-3xl:2.75rem;
+
+
+
+
+
+    /* ===============================
+       Animation
+       =============================== */
+
+
+    --transition-fast:.15s;
+
+
+    --transition-normal:.25s;
+
+
+    --transition-slow:.4s;
+
+
+
+}
