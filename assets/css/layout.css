@@ -1,32 +1,51 @@
 /* =========================================================
    Sleep Insight
-   layout.css
 
-   App Layout System v1.0
+   layout.css
+   Application Layout System v3.0
+
    ========================================================= */
 
 
-/* =========================
-   Base
-   ========================= */
+
+/* =========================================================
+   Global Layout
+   ========================================================= */
 
 
    body {
 
+
+    min-height:
+
+
+        100vh;
+
+
+
+    background:
+
+
+        var(--background);
+
+
+
+    color:
+
+
+        var(--text-primary);
+
+
+
     font-family:
+
+
         "Inter",
         "SF Pro Display",
         "PingFang SC",
         "Microsoft YaHei",
         sans-serif;
 
-
-    background:
-        var(--background);
-
-
-    color:
-        var(--text-primary);
 
 
 }
@@ -35,9 +54,12 @@
 
 
 
-/* =========================
-   Application Container
-   ========================= */
+
+
+
+/* =========================================================
+   App Container
+   ========================================================= */
 
 
 #app {
@@ -46,7 +68,19 @@
     display:flex;
 
 
-    min-height:100vh;
+
+    min-height:
+
+
+        100vh;
+
+
+
+    position:
+
+
+        relative;
+
 
 
 }
@@ -57,28 +91,72 @@
 
 
 
-/* =========================
+
+/* =========================================================
    Sidebar
-   ========================= */
+   ========================================================= */
 
 
 #sidebar {
 
 
-    width:230px;
+    width:
 
 
-    padding:24px 16px;
+        260px;
+
+
+
+    height:
+
+
+        100vh;
+
+
+
+    position:
+
+
+        fixed;
+
+
+
+    left:
+
+
+        0;
+
+
+
+    top:
+
+
+        0;
+
+
+
+    display:flex;
+
+
+
+    flex-direction:
+
+
+        column;
+
 
 
     background:
 
 
-        linear-gradient(
-            180deg,
-            #ffffff 0%,
-            #f8fafc 100%
-        );
+        rgba(255,255,255,.75);
+
+
+
+    backdrop-filter:
+
+
+        blur(20px);
 
 
 
@@ -90,10 +168,11 @@
 
 
 
-    display:flex;
+    z-index:
 
 
-    flex-direction:column;
+        20;
+
 
 
 }
@@ -103,9 +182,11 @@
 
 
 
-/* =========================
+
+
+/* =========================================================
    Logo
-   ========================= */
+   ========================================================= */
 
 
 .logo {
@@ -114,11 +195,11 @@
     padding:
 
 
-        18px 16px 36px;
+        32px 28px;
+
 
 
 }
-
 
 
 
@@ -128,21 +209,21 @@
     font-size:
 
 
-        var(--font-xl);
+        24px;
 
 
 
     font-weight:
 
 
-        700;
+        800;
 
 
 
     letter-spacing:
 
 
-        -0.5px;
+        -0.8px;
 
 
 
@@ -157,10 +238,17 @@
 
 
 
-    -webkit-background-clip:text;
+    -webkit-background-clip:
 
 
-    color:transparent;
+        text;
+
+
+
+    color:
+
+
+        transparent;
 
 
 
@@ -172,15 +260,20 @@
 
 
 
-/* =========================
+
+/* =========================================================
    Navigation
-   ========================= */
+   ========================================================= */
 
 
 nav {
 
 
-    flex:1;
+    padding:
+
+
+        12px;
+
 
 
 }
@@ -193,13 +286,25 @@ nav ul {
     display:flex;
 
 
-    flex-direction:column;
+
+    flex-direction:
 
 
-    gap:8px;
+        column;
+
+
+
+    gap:
+
+
+        8px;
+
 
 
 }
+
+
+
 
 
 
@@ -208,10 +313,16 @@ nav ul {
 nav li {
 
 
-    margin:0;
+    list-style:
+
+
+        none;
+
 
 
 }
+
+
 
 
 
@@ -224,21 +335,25 @@ nav a {
     display:flex;
 
 
-    align-items:center;
+
+    align-items:
+
+
+        center;
 
 
 
     padding:
 
 
-        13px 16px;
+        14px 18px;
 
 
 
     border-radius:
 
 
-        var(--radius-md);
+        16px;
 
 
 
@@ -249,22 +364,30 @@ nav a {
 
 
 
-    font-size:
+    font-weight:
 
 
-        var(--font-md);
+        600;
 
 
 
     transition:
 
 
-        all
-        var(--transition-fast);
+        .25s;
+
+
+
+    position:
+
+
+        relative;
 
 
 
 }
+
+
 
 
 
@@ -288,10 +411,31 @@ nav a:hover {
 
 
 
-    transform:
+}
 
 
-        translateX(4px);
+
+
+
+
+
+
+/* 当前页面 */
+
+nav a.active {
+
+
+    background:
+
+
+        rgba(79,125,243,.12);
+
+
+
+    color:
+
+
+        var(--primary);
 
 
 
@@ -303,29 +447,118 @@ nav a:hover {
 
 
 
-/* =========================
+
+nav a.active::before {
+
+
+    content:"";
+
+
+
+    position:
+
+
+        absolute;
+
+
+
+    left:
+
+
+        0;
+
+
+
+    top:
+
+
+        50%;
+
+
+
+    transform:
+
+
+        translateY(-50%);
+
+
+
+    width:
+
+
+        4px;
+
+
+
+    height:
+
+
+        22px;
+
+
+
+    border-radius:
+
+
+        10px;
+
+
+
+    background:
+
+
+        var(--primary);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
    Main Content
-   ========================= */
+   ========================================================= */
 
 
 #content {
 
 
-    flex:1;
+    margin-left:
+
+
+        260px;
+
+
+
+    flex:
+
+
+        1;
+
+
+
+    min-height:
+
+
+        100vh;
+
 
 
     padding:
 
 
-        40px 48px;
-
-
-
-    overflow-y:auto;
+        40px;
 
 
 
 }
+
+
 
 
 
@@ -335,20 +568,17 @@ nav a:hover {
 #view {
 
 
-    width:100%;
+    max-width:
 
 
-    max-width:1200px;
-
-
-    margin:0 auto;
+        1400px;
 
 
 
-    min-height:
+    margin:
 
 
-        calc(100vh - 80px);
+        0 auto;
 
 
 
@@ -361,27 +591,106 @@ nav a:hover {
 
 
 
-/* =========================
-   Scrollbar
-   ========================= */
+/* =========================================================
+   Page Background Decoration
+   ========================================================= */
 
 
-#content::-webkit-scrollbar {
+#content::before {
 
 
-    width:8px;
+    content:"";
 
 
-}
+
+    position:
 
 
-#content::-webkit-scrollbar-thumb {
+        fixed;
+
+
+
+    width:
+
+
+        420px;
+
+
+
+    height:
+
+
+        420px;
+
+
+
+    top:
+
+
+        -160px;
+
+
+
+    right:
+
+
+        -120px;
+
 
 
     background:
 
 
-        #CBD5E1;
+        radial-gradient(
+            circle,
+            rgba(79,125,243,.15),
+            transparent 70%
+        );
+
+
+
+    pointer-events:
+
+
+        none;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Scroll
+   ========================================================= */
+
+
+::-webkit-scrollbar {
+
+
+    width:
+
+
+        8px;
+
+
+
+}
+
+
+
+::-webkit-scrollbar-thumb {
+
+
+    background:
+
+
+        rgba(148,163,184,.35);
 
 
 
@@ -389,6 +698,150 @@ nav a:hover {
 
 
         20px;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Mobile
+   ========================================================= */
+
+
+@media(max-width:900px){
+
+
+
+    #sidebar {
+
+
+        width:
+
+
+            80px;
+
+
+
+    }
+
+
+
+    .logo h1 {
+
+
+        font-size:
+
+
+            0;
+
+
+
+    }
+
+
+
+    nav a {
+
+
+        justify-content:
+
+
+            center;
+
+
+
+        padding:
+
+
+            14px;
+
+
+
+    }
+
+
+
+    nav a::after {
+
+
+        display:
+
+
+            none;
+
+
+
+    }
+
+
+
+
+    #content {
+
+
+        margin-left:
+
+
+            80px;
+
+
+
+        padding:
+
+
+            24px;
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+@media(max-width:600px){
+
+
+
+    #sidebar {
+
+
+        display:
+
+
+            none;
+
+
+
+    }
+
+
+
+    #content {
+
+
+        margin-left:
+
+
+            0;
+
+
+
+    }
 
 
 
