@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Sleep Insight</title>
+
+    <!-- 页面描述 -->
+    <meta
+        name="description"
+        content="Sleep Insight 睡眠分析系统">
+
+    <!-- favicon（后续可替换） -->
+    <link
+        rel="icon"
+        href="favicon.ico">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/record.css">
+    <link rel="stylesheet" href="assets/css/statistics.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/dark.css">
+
+</head>
+
+<body>
+
+    <!-- 整个应用 -->
+    <div id="app">
+
+        <!-- 左侧导航 -->
+        <aside id="sidebar">
+
+            <div class="logo">
+
+                <h1>Sleep Insight</h1>
+
+            </div>
+
+            <nav>
+
+                <ul>
+
+                    <li>
+                        <a href="#dashboard">
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#record">
+                            睡眠记录
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#statistics">
+                            数据统计
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#export">
+                            导出报告
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </aside>
+
+        <!-- 主内容 -->
+        <main id="content">
+
+            <!-- 路由渲染区域 -->
+            <section id="view">
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- 第三方库 -->
+    <script src="libs/chart.min.js"></script>
+    <script src="libs/jspdf.min.js"></script>
+    <script src="libs/marked.min.js"></script>
+
+    <!-- 应用入口 -->
+    <script
+        type="module"
+        src="assets/js/main.js">
+    </script>
+
+</body>
+
+</html>
