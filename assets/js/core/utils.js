@@ -2,7 +2,7 @@
  * ==========================================
  * Sleep Insight
  * utils.js
- * 公共工具函数
+ * 通用工具函数
  * ==========================================
  */
 
@@ -13,27 +13,28 @@ export const Utils = {
      */
     uuid() {
 
-        return Date.now().toString(36)
-            + Math.random().toString(36).substring(2);
+        return "id_" +
+            Date.now() +
+            "_" +
+            Math.random().toString(36).substring(2, 9);
 
     },
 
     /**
-     * 格式化日期
+     * 获取今天日期（YYYY-MM-DD）
      */
-    formatDate(date) {
+    today() {
 
-        return new Date(date)
-            .toLocaleDateString("zh-CN");
+        return new Date().toISOString().split("T")[0];
 
     },
 
     /**
-     * 保留两位小数
+     * 保留一位小数
      */
-    fixed(value) {
+    round(value) {
 
-        return Number(value).toFixed(2);
+        return Number(value.toFixed(1));
 
     }
 
