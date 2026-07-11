@@ -31,18 +31,10 @@ export const SleepAnalytics = {
 
 
 
-
     /**
-     * 获取今日睡眠时长
+     * 今日睡眠
      */
     getTodaySleep(){
-
-
-
-        const records =
-            this.getRecords();
-
-
 
 
         const today =
@@ -52,22 +44,20 @@ export const SleepAnalytics = {
 
 
 
-
         const record =
-            records.find(
+            this.getRecords()
+            .find(
                 item =>
                 item.date === today
             );
 
 
 
-
         return record
             ?
-            record.duration
+            Number(record.duration)
             :
             0;
-
 
 
     },
@@ -79,10 +69,9 @@ export const SleepAnalytics = {
 
 
     /**
-     * 平均睡眠时间
+     * 平均睡眠
      */
     getAverageSleep(){
-
 
 
         const records =
@@ -90,16 +79,11 @@ export const SleepAnalytics = {
 
 
 
-
-        if(
-            records.length === 0
-        ){
+        if(!records.length){
 
             return 0;
 
         }
-
-
 
 
 
@@ -108,15 +92,13 @@ export const SleepAnalytics = {
                 (
                     sum,
                     item
-                )=>
+                ) =>
                     sum +
                     Number(
                         item.duration || 0
                     ),
                 0
             );
-
-
 
 
 
@@ -129,7 +111,6 @@ export const SleepAnalytics = {
         );
 
 
-
     },
 
 
@@ -140,10 +121,9 @@ export const SleepAnalytics = {
 
 
     /**
-     * 平均睡眠评分
+     * 平均评分
      */
     getAverageScore(){
-
 
 
         const records =
@@ -151,15 +131,11 @@ export const SleepAnalytics = {
 
 
 
-
-        if(
-            records.length === 0
-        ){
+        if(!records.length){
 
             return 0;
 
         }
-
 
 
 
@@ -169,7 +145,7 @@ export const SleepAnalytics = {
                 (
                     sum,
                     item
-                )=>
+                ) =>
                     sum +
                     Number(
                         item.score
@@ -182,16 +158,13 @@ export const SleepAnalytics = {
 
 
 
-
         return Math.round(
             total /
             records.length
         );
 
 
-
     },
-
 
 
 
@@ -206,28 +179,8 @@ export const SleepAnalytics = {
     getContinuousDays(){
 
 
-
-        const records =
-            this.getRecords();
-
-
-
-
-        if(
-            records.length === 0
-        ){
-
-            return 0;
-
-        }
-
-
-
-
-
-
         const dates =
-            records
+            this.getRecords()
             .map(
                 item =>
                 item.date
@@ -238,43 +191,39 @@ export const SleepAnalytics = {
 
 
 
+        if(!dates.length){
+
+            return 0;
+
+        }
+
+
 
         let days = 1;
 
 
 
 
-
         for(
-            let i = 1;
-            i < dates.length;
+            let i=1;
+            i<dates.length;
             i++
         ){
 
 
 
-            const current =
-                new Date(
-                    dates[i-1]
-                );
-
-
-
-            const previous =
-                new Date(
-                    dates[i]
-                );
-
-
-
             const diff =
                 (
-                    current -
-                    previous
+                    new Date(
+                        dates[i-1]
+                    )
+                    -
+                    new Date(
+                        dates[i]
+                    )
                 )
                 /
                 86400000;
-
 
 
 
@@ -290,9 +239,7 @@ export const SleepAnalytics = {
             }
 
 
-
         }
-
 
 
 
@@ -300,7 +247,6 @@ export const SleepAnalytics = {
         return days;
 
 
-
     },
 
 
@@ -312,10 +258,9 @@ export const SleepAnalytics = {
 
 
     /**
-     * 获取最近一次记录
+     * 最近一次记录
      */
     getLatestRecord(){
-
 
 
         const records =
@@ -323,10 +268,7 @@ export const SleepAnalytics = {
 
 
 
-
-        if(
-            records.length === 0
-        ){
+        if(!records.length){
 
             return null;
 
@@ -334,35 +276,15 @@ export const SleepAnalytics = {
 
 
 
-
-
-        const sorted =
-            [...records]
-            .sort(
-                (
-                    a,
-                    b
-                )=>{
-
-
-                    return new Date(
-                        b.date
-                    )
-                    -
-                    new Date(
-                        a.date
-                    );
-
-
-                }
-            );
-
-
-
-
-
-        return sorted[0];
-
+        return [
+            ...records
+        ]
+        .sort(
+            (a,b)=>
+            new Date(b.date)
+            -
+            new Date(a.date)
+        )[0];
 
 
     },
@@ -374,9 +296,8 @@ export const SleepAnalytics = {
 
 
 
-
     /**
-     * 睡眠状态评价
+     * 睡眠状态
      */
     getSleepStatus(){
 
@@ -388,40 +309,31 @@ export const SleepAnalytics = {
 
 
 
-
         if(score >= 90){
-
 
             return "优秀 🌙";
 
-
         }
 
 
 
-        if(score >= 75){
-
+        if(score >=75){
 
             return "良好 🙂";
 
-
         }
 
 
 
-        if(score >= 60){
-
+        if(score >=60){
 
             return "一般 😐";
 
-
         }
-
 
 
 
         return "需要改善 😴";
-
 
 
     },
@@ -435,15 +347,9 @@ export const SleepAnalytics = {
 
 
     /**
-     * 今日详细信息
+     * 今日详情
      */
     getTodayDetail(){
-
-
-
-        const records =
-            this.getRecords();
-
 
 
 
@@ -454,17 +360,264 @@ export const SleepAnalytics = {
 
 
 
+        return this.getRecords()
+        .find(
+            item =>
+            item.date === today
+        )
+        ||
+        null;
 
 
-        return (
-            records.find(
-                item =>
-                item.date === today
+    },
+
+
+
+
+
+
+
+
+
+    /**
+     * 最近7天平均睡眠
+     */
+    getWeeklyAverage(){
+
+
+
+        const records =
+            this.getRecords();
+
+
+
+        const latest =
+            [
+                ...records
+            ]
+            .sort(
+                (a,b)=>
+                new Date(b.date)
+                -
+                new Date(a.date)
             )
-            ||
-            null
+            .slice(
+                0,
+                7
+            );
+
+
+
+
+        if(!latest.length){
+
+            return 0;
+
+        }
+
+
+
+
+        const total =
+            latest.reduce(
+                (
+                    sum,
+                    item
+                )=>
+                    sum +
+                    Number(
+                        item.duration || 0
+                    ),
+                0
+            );
+
+
+
+
+        return Number(
+            (
+                total /
+                latest.length
+            )
+            .toFixed(1)
         );
 
+
+    },
+
+
+
+
+
+
+
+
+
+    /**
+     * 最佳睡眠日
+     */
+    getBestSleepDay(){
+
+
+
+        const records =
+            this.getRecords();
+
+
+
+        if(!records.length){
+
+            return null;
+
+        }
+
+
+
+
+        return [
+            ...records
+        ]
+        .sort(
+            (a,b)=>
+            Number(
+                b.duration
+            )
+            -
+            Number(
+                a.duration
+            )
+        )[0];
+
+
+    },
+
+
+
+
+
+
+
+
+
+    /**
+     * 睡眠质量分布
+     */
+    getQualityDistribution(){
+
+
+
+        const records =
+            this.getRecords();
+
+
+
+
+        const result = {
+
+
+            excellent:0,
+
+            good:0,
+
+            normal:0,
+
+            poor:0
+
+
+        };
+
+
+
+
+        records.forEach(
+            item=>{
+
+
+                const quality =
+                    Number(
+                        item.quality
+                    );
+
+
+
+                if(quality >= 9){
+
+                    result.excellent++;
+
+                }
+                else if(
+                    quality >= 7
+                ){
+
+                    result.good++;
+
+                }
+                else if(
+                    quality >=5
+                ){
+
+                    result.normal++;
+
+                }
+                else{
+
+                    result.poor++;
+
+                }
+
+
+            }
+        );
+
+
+
+
+        return result;
+
+
+    },
+
+
+
+
+
+
+
+
+
+    /**
+     * 趋势图数据
+     */
+    getTrendData(){
+
+
+
+        return [
+            ...
+            this.getRecords()
+        ]
+        .sort(
+            (a,b)=>
+            new Date(a.date)
+            -
+            new Date(b.date)
+        )
+        .map(
+            item=>({
+
+
+                date:
+                item.date,
+
+
+                duration:
+                Number(
+                    item.duration || 0
+                )
+
+
+            })
+        );
 
 
     }

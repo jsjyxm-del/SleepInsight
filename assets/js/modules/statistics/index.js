@@ -15,9 +15,9 @@ from "./template.js";
 
 
 import {
-    StatisticsService
+    SleepAnalytics
 }
-from "./service.js";
+from "../../services/sleepAnalytics.js";
 
 
 
@@ -48,6 +48,8 @@ export const Statistics = {
 
 
 
+
+
     /**
      * 页面初始化
      */
@@ -55,37 +57,61 @@ export const Statistics = {
 
 
 
-        const week =
-            StatisticsService
-            .getWeekAverage();
+        const weekly =
+            SleepAnalytics
+            .getWeeklyAverage();
 
 
 
-        const month =
-            StatisticsService
-            .getMonthAverage();
+
+        const average =
+            SleepAnalytics
+            .getAverageSleep();
+
+
+
+
+        const score =
+            SleepAnalytics
+            .getAverageScore();
 
 
 
 
         const best =
-            StatisticsService
-            .getBestSleep();
+            SleepAnalytics
+            .getBestSleepDay();
+
+
+
+
+        const quality =
+            SleepAnalytics
+            .getQualityDistribution();
 
 
 
 
 
-        const weekEl =
+
+
+        const weeklyEl =
             document.getElementById(
                 "week-average"
             );
 
 
 
-        const monthEl =
+        const averageEl =
             document.getElementById(
-                "month-average"
+                "average-sleep"
+            );
+
+
+
+        const scoreEl =
+            document.getElementById(
+                "average-score"
             );
 
 
@@ -97,13 +123,37 @@ export const Statistics = {
 
 
 
+        const qualityEl =
+            document.getElementById(
+                "quality-distribution"
+            );
 
 
-        if(weekEl){
 
 
-            weekEl.innerHTML =
-                `${week} h`;
+
+
+
+
+        if(weeklyEl){
+
+
+            weeklyEl.innerHTML =
+                `${weekly} h`;
+
+
+        }
+
+
+
+
+
+
+        if(averageEl){
+
+
+            averageEl.innerHTML =
+                `${average} h`;
 
 
         }
@@ -112,14 +162,17 @@ export const Statistics = {
 
 
 
-        if(monthEl){
+
+        if(scoreEl){
 
 
-            monthEl.innerHTML =
-                `${month} h`;
+            scoreEl.innerHTML =
+                score;
 
 
         }
+
+
 
 
 
@@ -131,7 +184,11 @@ export const Statistics = {
             bestEl.innerHTML =
                 best
                 ?
-                `${best.date}`
+                `
+                ${best.date}
+                <br>
+                ${best.duration} h
+                `
                 :
                 "--";
 
@@ -142,18 +199,62 @@ export const Statistics = {
 
 
 
-        /**
-         * 初始化统计图表
-         *
-         * 等待DOM生成以后执行
-         */
+
+
+        if(qualityEl){
+
+
+            qualityEl.innerHTML =
+            `
+
+            <p>
+            ⭐优秀：
+            ${quality.excellent}
+            次
+            </p>
+
+
+            <p>
+            🙂良好：
+            ${quality.good}
+            次
+            </p>
+
+
+            <p>
+            😐一般：
+            ${quality.normal}
+            次
+            </p>
+
+
+            <p>
+            😴较差：
+            ${quality.poor}
+            次
+            </p>
+
+            `;
+
+
+        }
+
+
+
+
+
+
+
+
         setTimeout(()=>{
 
 
             StatisticsCharts.init();
 
 
+
         },0);
+
 
 
 

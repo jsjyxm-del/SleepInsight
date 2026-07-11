@@ -7,23 +7,22 @@
  */
 
 
-import { SeedData } 
+import { SeedData }
 from "./dev/seedData.js";
 
 
-import { App } 
+import { App }
 from "./core/app.js";
 
 
+import { SleepAnalytics }
+from "./services/sleepAnalytics.js";
 
 
 
-/**
- * 页面加载完成以后启动应用
- */
 document.addEventListener(
     "DOMContentLoaded",
-    () => {
+    ()=>{
 
 
         App.init();
@@ -34,19 +33,12 @@ document.addEventListener(
 
 
 
+// 开发环境测试工具
+
+window.SeedData =
+    SeedData;
 
 
-/**
- * ==========================================
- * 开发环境工具
- * ==========================================
- *
- * 浏览器 Console:
- *
- * SeedData.generate()
- *
- * ==========================================
- */
 
-
-window.SeedData = SeedData;
+window.SleepAnalytics =
+    SleepAnalytics;
