@@ -2,13 +2,18 @@
  * ==========================================
  * Sleep Insight
  * export/pdf.js
- * PDF报告生成
+ *
+ * PDF报告生成 v2
  * ==========================================
  */
 
 
 import { ExportService }
 from "./service.js";
+
+
+import { SleepInsight }
+from "./report/insight.js";
 
 
 
@@ -23,26 +28,34 @@ export const PDFExporter = {
 
 
 
+        /**
+         * 获取基础数据
+         */
         const data =
             ExportService
             .getReportData();
 
 
 
-        const summary =
-            ExportService
-            .generateSummary();
+
+        /**
+         * 获取智能分析
+         */
+        const insight =
+            SleepInsight
+            .generate();
 
 
 
 
 
         /**
-         * 兼容不同版本 jsPDF
+         * 获取 jsPDF
          */
         const jsPDF =
             window.jspdf?.jsPDF ||
             window.jsPDF;
+
 
 
 
@@ -77,6 +90,9 @@ export const PDFExporter = {
 
 
 
+        /**
+         * 标题
+         */
         doc.setFontSize(20);
 
 
@@ -91,12 +107,15 @@ export const PDFExporter = {
 
 
 
+        /**
+         * 基础概览
+         */
         doc.setFontSize(12);
 
 
 
         doc.text(
-            `Average Sleep: ${data.overview.averageSleep} h`,
+            "Sleep Overview",
             20,
             40
         );
@@ -104,9 +123,17 @@ export const PDFExporter = {
 
 
         doc.text(
+            `Average Sleep: ${data.overview.averageSleep} h`,
+            20,
+            55
+        );
+
+
+
+        doc.text(
             `Sleep Score: ${data.overview.averageScore}`,
             20,
-            50
+            65
         );
 
 
@@ -114,7 +141,7 @@ export const PDFExporter = {
         doc.text(
             `Continuous Days: ${data.overview.continuousDays}`,
             20,
-            60
+            75
         );
 
 
@@ -123,20 +150,32 @@ export const PDFExporter = {
 
 
 
+        /**
+         * 智能分析
+         */
         doc.text(
-            "Sleep Summary:",
+            "Sleep Analysis",
             20,
-            80
+            100
         );
 
 
 
+
+
         doc.text(
-            summary,
+            "Trend:",
             20,
-            95,
+            115
+        );
+
+
+        doc.text(
+            insight.trend,
+            35,
+            115,
             {
-                maxWidth:160
+                maxWidth:150
             }
         );
 
@@ -146,6 +185,82 @@ export const PDFExporter = {
 
 
 
+        doc.text(
+            "Quality:",
+            20,
+            135
+        );
+
+
+
+        doc.text(
+            insight.quality,
+            35,
+            135,
+            {
+                maxWidth:150
+            }
+        );
+
+
+
+
+
+
+
+        doc.text(
+            "Best Sleep Day:",
+            20,
+            155
+        );
+
+
+
+        doc.text(
+            insight.bestDay,
+            35,
+            155,
+            {
+                maxWidth:150
+            }
+        );
+
+
+
+
+
+
+
+
+        /**
+         * 建议
+         */
+        doc.text(
+            "Suggestion:",
+            20,
+            180
+        );
+
+
+
+        doc.text(
+            insight.suggestion,
+            35,
+            180,
+            {
+                maxWidth:150
+            }
+        );
+
+
+
+
+
+
+
+        /**
+         * 最近记录
+         */
         if(data.latestRecord){
 
 
@@ -153,17 +268,16 @@ export const PDFExporter = {
             doc.text(
                 "Latest Record:",
                 20,
-                125
+                215
             );
 
 
 
             doc.text(
                 `${data.latestRecord.date}  ${data.latestRecord.duration} h`,
-                20,
-                140
+                35,
+                215
             );
-
 
 
         }
@@ -174,6 +288,9 @@ export const PDFExporter = {
 
 
 
+        /**
+         * 保存
+         */
         doc.save(
             "SleepInsight_Report.pdf"
         );
@@ -181,7 +298,6 @@ export const PDFExporter = {
 
 
     }
-
 
 
 
