@@ -2,88 +2,215 @@
  * ==========================================
  * Sleep Insight
  * dashboard.js
- * Dashboard 页面
+ * Dashboard 首页
  * ==========================================
  */
 
+
+import { SleepAnalytics }
+from "../services/sleepAnalytics.js";
+
+
+import { SleepChart }
+from "../charts/sleepChart.js";
+
+
+
 export const Dashboard = {
+
+
 
     /**
      * 渲染 Dashboard
-     * @returns {string}
      */
     render() {
 
-        return `
+
+
+        const todaySleep =
+            SleepAnalytics.getTodaySleep();
+
+
+
+        const averageSleep =
+            SleepAnalytics.getAverageSleep();
+
+
+
+        const score =
+            SleepAnalytics.getAverageScore();
+
+
+
+        const days =
+            SleepAnalytics.getContinuousDays();
+
+
+
+
+
+        const html = `
+
+
 <section class="dashboard">
 
+
     <h1 class="page-title">
+
         Sleep Insight Dashboard
+
     </h1>
 
-    <!-- 四张统计卡片 -->
+
+
     <div class="dashboard-grid">
 
-        <div class="stat-card">
-            <div class="stat-title">今日睡眠</div>
-            <div class="stat-value">-- h</div>
-        </div>
 
-        <div class="stat-card">
-            <div class="stat-title">平均睡眠</div>
-            <div class="stat-value">-- h</div>
-        </div>
 
-        <div class="stat-card">
-            <div class="stat-title">睡眠评分</div>
-            <div class="stat-value">--</div>
-        </div>
+        <div class="card stat-card">
 
-        <div class="stat-card">
-            <div class="stat-title">连续记录</div>
-            <div class="stat-value">0 天</div>
-        </div>
 
-    </div>
+            <h3>
 
-    <!-- 下半部分 -->
-    <div class="dashboard-content">
+                今日睡眠
 
-        <!-- 最近睡眠 -->
-        <div class="card">
+            </h3>
 
-            <h2 class="section-title">
-                最近睡眠记录
-            </h2>
 
-            <div class="record-list">
+            <div class="number">
 
-                <div class="record-item">
-                    暂无睡眠记录
-                </div>
+                ${todaySleep} h
 
             </div>
 
+
         </div>
 
-        <!-- 图表区域 -->
-        <div class="card">
 
-            <h2 class="section-title">
-                睡眠趋势
-            </h2>
 
-            <div class="chart-placeholder">
-                Chart.js 图表将在这里显示
+
+
+        <div class="card stat-card">
+
+
+            <h3>
+
+                平均睡眠
+
+            </h3>
+
+
+            <div class="number">
+
+                ${averageSleep} h
+
             </div>
 
+
         </div>
 
+
+
+
+
+        <div class="card stat-card">
+
+
+            <h3>
+
+                睡眠评分
+
+            </h3>
+
+
+            <div class="number">
+
+                ${score}
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <div class="card stat-card">
+
+
+            <h3>
+
+                连续记录
+
+            </h3>
+
+
+            <div class="number">
+
+                ${days} 天
+
+            </div>
+
+
+        </div>
+
+
+
     </div>
+
+
+
+
+
+    <div class="card chart-card">
+
+
+        <h2>
+
+            最近睡眠趋势
+
+        </h2>
+
+
+
+        <canvas id="sleep-chart">
+
+        </canvas>
+
+
+
+    </div>
+
+
 
 </section>
+
+
 `;
 
+
+
+
+        /**
+         * 等待 DOM 插入后初始化图表
+         */
+        setTimeout(()=>{
+
+
+            SleepChart.init();
+
+
+        },0);
+
+
+
+
+        return html;
+
+
+
     }
+
 
 };
