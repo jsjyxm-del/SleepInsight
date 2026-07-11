@@ -21,9 +21,9 @@ export const Dashboard = {
 
 
     /**
-     * 渲染 Dashboard
+     * 页面渲染
      */
-    render() {
+    render(){
 
 
 
@@ -49,138 +49,134 @@ export const Dashboard = {
 
 
 
-        const html = `
+        return `
 
 
 <section class="dashboard">
 
 
-    <h1 class="page-title">
+<h1 class="page-title">
 
-        Sleep Insight Dashboard
+Sleep Insight Dashboard
 
-    </h1>
+</h1>
 
 
 
-    <div class="dashboard-grid">
 
+<div class="dashboard-grid">
 
 
-        <div class="card stat-card">
 
+<div class="card stat-card">
 
-            <h3>
 
-                今日睡眠
+<h3>
+今日睡眠
+</h3>
 
-            </h3>
 
+<div class="number">
 
-            <div class="number">
+${todaySleep} h
 
-                ${todaySleep} h
+</div>
 
-            </div>
 
+</div>
 
-        </div>
 
 
 
 
+<div class="card stat-card">
 
-        <div class="card stat-card">
 
+<h3>
+平均睡眠
+</h3>
 
-            <h3>
 
-                平均睡眠
+<div class="number">
 
-            </h3>
+${averageSleep} h
 
+</div>
 
-            <div class="number">
 
-                ${averageSleep} h
+</div>
 
-            </div>
 
 
-        </div>
 
 
+<div class="card stat-card">
 
 
+<h3>
+睡眠评分
+</h3>
 
-        <div class="card stat-card">
 
+<div class="number">
 
-            <h3>
+${score}
 
-                睡眠评分
+</div>
 
-            </h3>
 
+</div>
 
-            <div class="number">
 
-                ${score}
 
-            </div>
 
 
-        </div>
+<div class="card stat-card">
 
 
+<h3>
+连续记录
+</h3>
 
 
+<div class="number">
 
-        <div class="card stat-card">
+${days} 天
 
+</div>
 
-            <h3>
 
-                连续记录
+</div>
 
-            </h3>
 
 
-            <div class="number">
 
-                ${days} 天
+</div>
 
-            </div>
 
 
-        </div>
 
 
 
-    </div>
 
+<div class="card chart-card">
 
 
+<h2>
 
+最近睡眠趋势
 
-    <div class="card chart-card">
+</h2>
 
 
-        <h2>
 
-            最近睡眠趋势
+<canvas id="sleep-chart"></canvas>
 
-        </h2>
 
 
+</div>
 
-        <canvas id="sleep-chart">
 
-        </canvas>
-
-
-
-    </div>
 
 
 
@@ -191,26 +187,24 @@ export const Dashboard = {
 
 
 
-
-        /**
-         * 等待 DOM 插入后初始化图表
-         */
-        setTimeout(()=>{
-
-
-            SleepChart.init();
-
-
-        },0);
+    },
 
 
 
 
-        return html;
 
+
+    /**
+     * 页面初始化
+     */
+    init(){
+
+
+        SleepChart.init();
 
 
     }
+
 
 
 };

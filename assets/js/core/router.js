@@ -53,6 +53,7 @@ export const Router = {
 
 
 
+
     /**
      * 加载页面
      */
@@ -73,6 +74,7 @@ export const Router = {
 
 
 
+
         switch(hash){
 
 
@@ -80,11 +82,20 @@ export const Router = {
             case "#dashboard":
 
 
+
                 view.innerHTML =
                     Dashboard.render();
 
 
+
+                Dashboard.init();
+
+
+
                 break;
+
+
+
 
 
 
@@ -92,14 +103,20 @@ export const Router = {
             case "#record":
 
 
+
                 view.innerHTML =
                     Record.render();
+
 
 
                 Record.init();
 
 
+
                 break;
+
+
+
 
 
 
@@ -107,14 +124,20 @@ export const Router = {
             case "#statistics":
 
 
+
                 view.innerHTML =
                     Statistics.render();
+
 
 
                 Statistics.init();
 
 
+
                 break;
+
+
+
 
 
 
@@ -122,8 +145,10 @@ export const Router = {
             case "#export":
 
 
+
                 view.innerHTML =
                     ExportModule.render();
+
 
 
                 break;
@@ -131,11 +156,16 @@ export const Router = {
 
 
 
+
+
+
             default:
+
 
 
                 location.hash =
                     "#dashboard";
+
 
 
         }
