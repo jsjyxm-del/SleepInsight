@@ -6,30 +6,43 @@
  * ==========================================
  */
 
-import { Storage } from "../core/storage.js";
+
+import { Storage }
+from "../core/storage.js";
+
 
 
 export const SleepAnalytics = {
 
 
+
     /**
      * 获取全部记录
      */
-    getRecords() {
+    getRecords(){
+
 
         return Storage.getRecords();
+
 
     },
 
 
 
+
+
+
     /**
-     * 今日睡眠
+     * 获取今日睡眠时长
      */
-    getTodaySleep() {
+    getTodaySleep(){
 
 
-        const records = this.getRecords();
+
+        const records =
+            this.getRecords();
+
+
 
 
         const today =
@@ -39,26 +52,37 @@ export const SleepAnalytics = {
 
 
 
+
         const record =
             records.find(
-                item => item.date === today
+                item =>
+                item.date === today
             );
 
 
 
+
         return record
-            ? record.duration
-            : 0;
+            ?
+            record.duration
+            :
+            0;
+
 
 
     },
+
+
+
+
 
 
 
     /**
      * 平均睡眠时间
      */
-    getAverageSleep() {
+    getAverageSleep(){
+
 
 
         const records =
@@ -66,7 +90,10 @@ export const SleepAnalytics = {
 
 
 
-        if (!records.length) {
+
+        if(
+            records.length === 0
+        ){
 
             return 0;
 
@@ -74,31 +101,49 @@ export const SleepAnalytics = {
 
 
 
+
+
         const total =
             records.reduce(
-                (sum, item) =>
-                    sum + item.duration,
+                (
+                    sum,
+                    item
+                )=>
+                    sum +
+                    Number(
+                        item.duration || 0
+                    ),
                 0
             );
 
 
 
+
+
         return Number(
             (
-                total / records.length
+                total /
+                records.length
             )
             .toFixed(1)
         );
 
 
+
     },
+
+
+
+
+
 
 
 
     /**
      * 平均睡眠评分
      */
-    getAverageScore() {
+    getAverageScore(){
+
 
 
         const records =
@@ -106,7 +151,10 @@ export const SleepAnalytics = {
 
 
 
-        if (!records.length) {
+
+        if(
+            records.length === 0
+        ){
 
             return 0;
 
@@ -114,35 +162,60 @@ export const SleepAnalytics = {
 
 
 
+
+
         const total =
             records.reduce(
-                (sum, item)=>
-                    sum + item.quality,
+                (
+                    sum,
+                    item
+                )=>
+                    sum +
+                    Number(
+                        item.score
+                        ||
+                        item.quality * 10
+                    ),
                 0
             );
 
 
 
+
+
         return Math.round(
-            total / records.length * 10
+            total /
+            records.length
         );
+
 
 
     },
 
 
 
+
+
+
+
+
+
     /**
      * 连续记录天数
      */
-    getContinuousDays() {
+    getContinuousDays(){
+
 
 
         const records =
             this.getRecords();
 
 
-        if (!records.length) {
+
+
+        if(
+            records.length === 0
+        ){
 
             return 0;
 
@@ -150,15 +223,25 @@ export const SleepAnalytics = {
 
 
 
+
+
+
         const dates =
             records
-            .map(item=>item.date)
+            .map(
+                item =>
+                item.date
+            )
             .sort()
             .reverse();
 
 
 
+
+
         let days = 1;
+
+
 
 
 
@@ -169,12 +252,18 @@ export const SleepAnalytics = {
         ){
 
 
+
             const current =
-                new Date(dates[i-1]);
+                new Date(
+                    dates[i-1]
+                );
+
 
 
             const previous =
-                new Date(dates[i]);
+                new Date(
+                    dates[i]
+                );
 
 
 
@@ -188,22 +277,194 @@ export const SleepAnalytics = {
 
 
 
+
             if(diff === 1){
 
                 days++;
 
-            }else{
+            }
+            else{
 
                 break;
 
             }
 
 
+
         }
 
 
 
+
+
         return days;
+
+
+
+    },
+
+
+
+
+
+
+
+
+
+    /**
+     * 获取最近一次记录
+     */
+    getLatestRecord(){
+
+
+
+        const records =
+            this.getRecords();
+
+
+
+
+        if(
+            records.length === 0
+        ){
+
+            return null;
+
+        }
+
+
+
+
+
+        const sorted =
+            [...records]
+            .sort(
+                (
+                    a,
+                    b
+                )=>{
+
+
+                    return new Date(
+                        b.date
+                    )
+                    -
+                    new Date(
+                        a.date
+                    );
+
+
+                }
+            );
+
+
+
+
+
+        return sorted[0];
+
+
+
+    },
+
+
+
+
+
+
+
+
+
+    /**
+     * 睡眠状态评价
+     */
+    getSleepStatus(){
+
+
+
+        const score =
+            this.getAverageScore();
+
+
+
+
+
+        if(score >= 90){
+
+
+            return "优秀 🌙";
+
+
+        }
+
+
+
+        if(score >= 75){
+
+
+            return "良好 🙂";
+
+
+        }
+
+
+
+        if(score >= 60){
+
+
+            return "一般 😐";
+
+
+        }
+
+
+
+
+        return "需要改善 😴";
+
+
+
+    },
+
+
+
+
+
+
+
+
+
+    /**
+     * 今日详细信息
+     */
+    getTodayDetail(){
+
+
+
+        const records =
+            this.getRecords();
+
+
+
+
+        const today =
+            new Date()
+            .toISOString()
+            .split("T")[0];
+
+
+
+
+
+        return (
+            records.find(
+                item =>
+                item.date === today
+            )
+            ||
+            null
+        );
+
 
 
     }
