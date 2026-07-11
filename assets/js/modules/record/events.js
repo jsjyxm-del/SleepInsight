@@ -2,44 +2,192 @@
  * ==========================================
  * Sleep Insight
  * record/events.js
- * 页面事件
+ * 睡眠记录事件处理
  * ==========================================
  */
 
-import { RecordService } from "./service.js";
 
-export function bindRecordEvents(refreshList) {
+import {
+    RecordService
+}
+from "./service.js";
 
-    const form = document.getElementById("sleep-form");
 
-    if (!form) return;
 
-    form.addEventListener("submit", (event) => {
+import {
+    RecordList
+}
+from "./list.js";
 
-        event.preventDefault();
 
-        const formData = {
 
-            date: document.getElementById("date").value,
 
-            bedtime: document.getElementById("bedtime").value,
 
-            wakeTime: document.getElementById("wakeTime").value,
+export const RecordEvents = {
 
-            quality: document.getElementById("quality").value,
 
-            notes: document.getElementById("notes").value
+
+    /**
+     * 初始化事件
+     */
+    init(){
+
+
+
+        const form =
+            document.getElementById(
+                "sleep-form"
+            );
+
+
+
+        if(!form){
+
+            return;
+
+        }
+
+
+
+
+
+        form.addEventListener(
+            "submit",
+            (event)=>{
+
+
+                event.preventDefault();
+
+
+
+                this.handleSubmit(
+                    form
+                );
+
+
+            }
+        );
+
+
+
+    },
+
+
+
+
+
+    /**
+     * 保存表单
+     */
+    handleSubmit(form){
+
+
+
+        const data = {
+
+
+
+            date:
+            document.getElementById(
+                "date"
+            )
+            .value,
+
+
+
+            bedtime:
+            document.getElementById(
+                "bedtime"
+            )
+            .value,
+
+
+
+            wakeTime:
+            document.getElementById(
+                "wakeTime"
+            )
+            .value,
+
+
+
+            quality:
+            document.getElementById(
+                "quality"
+            )
+            .value,
+
+
+
+            notes:
+            document.getElementById(
+                "notes"
+            )
+            .value
+
+
 
         };
 
-        const record = RecordService.createRecord(formData);
 
-        RecordService.save(record);
+
+
+
+        if(
+            !data.date ||
+            !data.bedtime ||
+            !data.wakeTime
+        ){
+
+            alert(
+                "请填写完整睡眠信息"
+            );
+
+            return;
+
+        }
+
+
+
+
+
+
+        const record =
+            RecordService
+            .saveRecord(
+                data
+            );
+
+
+
+
+
+        console.log(
+            "保存成功:",
+            record
+        );
+
+
+
+
 
         form.reset();
 
-        refreshList();
 
-    });
 
-}
+
+        RecordList.render();
+
+
+
+        alert(
+            "睡眠记录保存成功"
+        );
+
+
+
+    }
+
+
+
+};

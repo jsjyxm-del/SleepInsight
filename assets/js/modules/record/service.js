@@ -2,104 +2,268 @@
  * ==========================================
  * Sleep Insight
  * record/service.js
- * 睡眠记录业务逻辑
+ * 睡眠记录数据服务
  * ==========================================
  */
 
-import { Storage } from "../../core/storage.js";
-import { Utils } from "../../core/utils.js";
+
+import { Storage }
+from "../../core/storage.js";
+
+
+import { calculateSleepScore }
+from "./score.js";
+
+
 
 export const RecordService = {
+
+
 
     /**
      * 获取全部记录
      */
-    getAll() {
+    getRecords(){
+
 
         return Storage.getRecords();
 
+
     },
+
+
+
+
+
 
     /**
-     * 保存一条记录
+     * 保存记录
      */
-    save(record) {
+    saveRecord(record){
 
-        const records = Storage.getRecords();
 
-        records.unshift(record);
 
-        Storage.saveRecords(records);
+        const records =
+            this.getRecords();
+
+
+
+
+        const duration =
+            this.calculateDuration(
+                record.bedtime,
+                record.wakeTime
+            );
+
+
+
+
+
+        const score =
+            calculateSleepScore(
+                duration,
+                record.quality
+            );
+
+
+
+
+
+        const newRecord = {
+
+
+
+            id:
+            Date.now(),
+
+
+
+
+            date:
+            record.date,
+
+
+
+
+            bedtime:
+            record.bedtime,
+
+
+
+
+            wakeTime:
+            record.wakeTime,
+
+
+
+
+            duration,
+
+
+
+
+            quality:
+            Number(
+                record.quality
+            ),
+
+
+
+
+            score,
+
+
+
+
+            notes:
+            record.notes || "",
+
+
+
+
+            createdAt:
+            new Date()
+            .toISOString()
+
+
+
+        };
+
+
+
+
+
+
+        records.push(
+            newRecord
+        );
+
+
+
+
+
+        Storage.saveRecords(
+            records
+        );
+
+
+
+
+
+        return newRecord;
+
+
 
     },
+
+
+
+
+
+
+
 
     /**
      * 删除记录
      */
-    remove(id) {
+    removeRecord(id){
 
-        const records = Storage
-            .getRecords()
-            .filter(item => item.id !== id);
 
-        Storage.saveRecords(records);
+
+        const records =
+            this.getRecords();
+
+
+
+
+        const newRecords =
+            records.filter(
+                record =>
+                record.id !== id
+            );
+
+
+
+
+
+        Storage.saveRecords(
+            newRecords
+        );
+
+
 
     },
+
+
+
+
+
+
 
     /**
      * 计算睡眠时长
      */
-    calculateDuration(bedtime, wakeTime) {
+    calculateDuration(
+        bedtime,
+        wakeTime
+    ){
 
-        if (!bedtime || !wakeTime) {
 
-            return 0;
+
+        const start =
+            new Date(
+                `2000-01-01 ${bedtime}`
+            );
+
+
+
+        const end =
+            new Date(
+                `2000-01-01 ${wakeTime}`
+            );
+
+
+
+
+
+        if(end <= start){
+
+
+            end.setDate(
+                end.getDate()+1
+            );
+
 
         }
 
-        const start = new Date(`2000-01-01 ${bedtime}`);
 
-        let end = new Date(`2000-01-01 ${wakeTime}`);
 
-        // 跨天睡眠
-        if (end < start) {
 
-            end.setDate(end.getDate() + 1);
 
-        }
+        const hours =
+            (
+                end-start
+            )
+            /
+            1000
+            /
+            60
+            /
+            60;
 
-        return Number(((end - start) / 3600000).toFixed(1));
 
-    },
 
-    /**
-     * 创建记录对象
-     */
-    createRecord(formData) {
 
-        return {
 
-            id: Utils.uuid(),
 
-            date: formData.date,
+        return Number(
+            hours.toFixed(1)
+        );
 
-            bedtime: formData.bedtime,
 
-            wakeTime: formData.wakeTime,
-
-            duration: this.calculateDuration(
-                formData.bedtime,
-                formData.wakeTime
-            ),
-
-            quality: Number(formData.quality),
-
-            notes: formData.notes,
-
-            createdAt: new Date().toISOString()
-
-        };
 
     }
+
+
 
 };

@@ -7,15 +7,21 @@
  */
 
 
-import { renderRecordTemplate } 
+import {
+    renderRecordTemplate
+}
 from "./template.js";
 
 
-import { bindRecordEvents } 
+import {
+    RecordEvents
+}
 from "./events.js";
 
 
-import { RecordList } 
+import {
+    RecordList
+}
 from "./list.js";
 
 
@@ -27,7 +33,7 @@ export const Record = {
     /**
      * 页面渲染
      */
-    render() {
+    render(){
 
 
         return renderRecordTemplate();
@@ -38,32 +44,28 @@ export const Record = {
 
 
 
+
     /**
      * 页面初始化
      */
-    init() {
+    init(){
 
 
 
-        // 绑定表单事件
+        // 初始化表单事件
 
-        bindRecordEvents(
-            () => {
-
-                RecordList.render();
-
-            }
-        );
+        RecordEvents.init();
 
 
 
-        // 加载记录列表
+        // 初始化记录列表
 
         RecordList.render();
 
 
 
     }
+
 
 
 };
