@@ -2,15 +2,14 @@
  * ==========================================
  * Sleep Insight
  * statistics/charts.js
- * 统计图表
+ * 数据统计图表
  * ==========================================
  */
 
 
-import {
-    StatisticsService
-}
-from "./service.js";
+import { SleepAnalytics }
+from "../../services/sleepAnalytics.js";
+
 
 
 
@@ -18,14 +17,21 @@ export const StatisticsCharts = {
 
 
 
-    qualityChart:null,
+    charts:{},
+
+
 
 
 
     init(){
 
 
-        this.renderQualityChart();
+
+        this.createTrendChart();
+
+
+        this.createQualityChart();
+
 
 
     },
@@ -34,7 +40,123 @@ export const StatisticsCharts = {
 
 
 
-    renderQualityChart(){
+
+
+
+    createTrendChart(){
+
+
+
+        const canvas =
+            document.getElementById(
+                "statistics-trend-chart"
+            );
+
+
+
+        if(!canvas){
+
+            return;
+
+        }
+
+
+
+
+
+        const data =
+            SleepAnalytics
+            .getTrendData();
+
+
+
+
+
+        this.charts.trend =
+            new Chart(
+                canvas,
+                {
+
+
+                    type:"line",
+
+
+                    data:{
+
+
+                        labels:
+                        data.map(
+                            item =>
+                            item.date
+                        ),
+
+
+
+                        datasets:[{
+
+
+                            label:
+                            "睡眠时长(h)",
+
+
+
+                            data:
+                            data.map(
+                                item =>
+                                item.duration
+                            ),
+
+
+                            tension:0.3
+
+
+                        }]
+
+
+                    },
+
+
+                    options:{
+
+
+                        responsive:true,
+
+
+                        scales:{
+
+
+                            y:{
+
+
+                                beginAtZero:true
+
+
+                            }
+
+
+                        }
+
+
+                    }
+
+
+                }
+            );
+
+
+
+    },
+
+
+
+
+
+
+
+
+
+    createQualityChart(){
+
 
 
         const canvas =
@@ -52,96 +174,70 @@ export const StatisticsCharts = {
 
 
 
-        const records =
-            StatisticsService
-            .getRecords();
 
-
-
-        const labels =
-            records
-            .slice(-7)
-            .map(
-                item=>item.date
-            );
-
-
-
-        const values =
-            records
-            .slice(-7)
-            .map(
-                item=>item.quality
-            );
-
-
-
-
-        if(this.qualityChart){
-
-            this.qualityChart.destroy();
-
-        }
+        const quality =
+            SleepAnalytics
+            .getQualityDistribution();
 
 
 
 
 
-        this.qualityChart =
+        this.charts.quality =
             new Chart(
-
                 canvas,
-
                 {
 
 
                     type:"bar",
 
 
+
                     data:{
 
 
-                        labels,
+                        labels:[
+
+                            "优秀",
+                            "良好",
+                            "一般",
+                            "较差"
+
+                        ],
+
 
 
                         datasets:[{
 
 
                             label:
-                            "睡眠质量",
+                            "次数",
 
 
-                            data:values
+
+                            data:[
+
+                                quality.excellent,
+
+                                quality.good,
+
+                                quality.normal,
+
+                                quality.poor
+
+                            ]
 
 
                         }]
 
-                    },
 
+                    },
 
 
                     options:{
 
 
-                        responsive:true,
-
-
-                        scales:{
-
-
-                            y:{
-
-
-                                beginAtZero:true,
-
-
-                                max:10
-
-
-                            }
-
-
-                        }
+                        responsive:true
 
 
                     }
@@ -149,11 +245,12 @@ export const StatisticsCharts = {
 
                 }
 
-
             );
 
 
+
     }
+
 
 
 
