@@ -47,12 +47,30 @@ export const Dashboard = {
 
 
 
+        const status =
+            SleepAnalytics.getSleepStatus();
+
+
+
+        const todayDetail =
+            SleepAnalytics.getTodayDetail();
+
+
+
+        const latestRecord =
+            SleepAnalytics.getLatestRecord();
+
+
+
+
+
 
 
         return `
 
 
 <section class="dashboard">
+
 
 
 <h1 class="page-title">
@@ -64,26 +82,34 @@ Sleep Insight Dashboard
 
 
 
+
 <div class="dashboard-grid">
 
 
 
+
+
 <div class="card stat-card">
 
 
 <h3>
+
 今日睡眠
+
 </h3>
 
 
 <div class="number">
 
-${todaySleep} h
+${todaySleep}
+
+h
 
 </div>
 
 
 </div>
+
 
 
 
@@ -93,18 +119,23 @@ ${todaySleep} h
 
 
 <h3>
+
 平均睡眠
+
 </h3>
 
 
 <div class="number">
 
-${averageSleep} h
+${averageSleep}
+
+h
 
 </div>
 
 
 </div>
+
 
 
 
@@ -114,7 +145,9 @@ ${averageSleep} h
 
 
 <h3>
+
 睡眠评分
+
 </h3>
 
 
@@ -125,7 +158,16 @@ ${score}
 </div>
 
 
+
+<p>
+
+${status}
+
+</p>
+
+
 </div>
+
 
 
 
@@ -135,13 +177,17 @@ ${score}
 
 
 <h3>
+
 连续记录
+
 </h3>
 
 
 <div class="number">
 
-${days} 天
+${days}
+
+天
 
 </div>
 
@@ -151,7 +197,181 @@ ${days} 天
 
 
 
+
 </div>
+
+
+
+
+
+
+
+
+
+<div class="card detail-card">
+
+
+<h2>
+
+今日睡眠详情
+
+</h2>
+
+
+
+${
+    todayDetail
+    ?
+
+    `
+
+    <p>
+
+    睡眠时间：
+
+    ${todayDetail.bedtime || "--"}
+
+    -
+
+    ${todayDetail.wakeTime || "--"}
+
+    </p>
+
+
+
+    <p>
+
+    睡眠时长：
+
+    ${todayDetail.duration}
+
+    h
+
+    </p>
+
+
+
+    <p>
+
+    睡眠质量：
+
+    ⭐
+
+    ${todayDetail.quality}/10
+
+    </p>
+
+    `
+
+    :
+
+    `
+
+    <p>
+
+    今日暂无睡眠记录
+
+    </p>
+
+    `
+
+}
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="card detail-card">
+
+
+<h2>
+
+最近一次睡眠
+
+</h2>
+
+
+
+
+${
+    latestRecord
+    ?
+
+    `
+
+
+    <p>
+
+    日期：
+
+    ${latestRecord.date}
+
+    </p>
+
+
+
+    <p>
+
+    时长：
+
+    ${latestRecord.duration}
+
+    h
+
+    </p>
+
+
+
+    <p>
+
+    质量：
+
+    ⭐
+
+    ${latestRecord.quality}/10
+
+    </p>
+
+
+
+    <p>
+
+    ${latestRecord.notes || ""}
+
+    </p>
+
+
+    `
+
+    :
+
+    `
+
+    <p>
+
+    暂无记录
+
+    </p>
+
+    `
+
+}
+
+
+
+
+</div>
+
+
 
 
 
@@ -180,6 +400,7 @@ ${days} 天
 
 
 
+
 </section>
 
 
@@ -194,13 +415,16 @@ ${days} 天
 
 
 
+
     /**
      * 页面初始化
      */
     init(){
 
 
+
         SleepChart.init();
+
 
 
     }
