@@ -37,9 +37,33 @@ export const PDFExporter = {
 
 
 
-        const {
-            jsPDF
-        } = window.jspdf;
+        /**
+         * 兼容不同版本 jsPDF
+         */
+        const jsPDF =
+            window.jspdf?.jsPDF ||
+            window.jsPDF;
+
+
+
+        if(!jsPDF){
+
+
+            console.error(
+                "jsPDF 未加载",
+                window.jspdf
+            );
+
+
+            alert(
+                "PDF组件未加载"
+            );
+
+
+            return;
+
+
+        }
 
 
 
@@ -72,7 +96,7 @@ export const PDFExporter = {
 
 
         doc.text(
-            `平均睡眠: ${data.overview.averageSleep} h`,
+            `Average Sleep: ${data.overview.averageSleep} h`,
             20,
             40
         );
@@ -80,7 +104,7 @@ export const PDFExporter = {
 
 
         doc.text(
-            `睡眠评分: ${data.overview.averageScore}`,
+            `Sleep Score: ${data.overview.averageScore}`,
             20,
             50
         );
@@ -88,7 +112,7 @@ export const PDFExporter = {
 
 
         doc.text(
-            `连续记录: ${data.overview.continuousDays} 天`,
+            `Continuous Days: ${data.overview.continuousDays}`,
             20,
             60
         );
@@ -98,8 +122,9 @@ export const PDFExporter = {
 
 
 
+
         doc.text(
-            "睡眠总结:",
+            "Sleep Summary:",
             20,
             80
         );
@@ -120,12 +145,13 @@ export const PDFExporter = {
 
 
 
+
         if(data.latestRecord){
 
 
 
             doc.text(
-                "最近一次记录:",
+                "Latest Record:",
                 20,
                 125
             );
