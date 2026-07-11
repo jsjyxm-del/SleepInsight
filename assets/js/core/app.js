@@ -6,24 +6,66 @@
  * ==========================================
  */
 
-import { Router } from "./router.js";
-import { Storage } from "./storage.js";
+
+import { Router }
+from "./router.js";
+
+
+import { Storage }
+from "./storage.js";
+
+
+import { Migration }
+from "./migration.js";
+
+
 
 export const App = {
+
+
 
     /**
      * 初始化整个应用
      */
-    init() {
+    init(){
 
-        console.log("Sleep Insight 已启动");
 
-        // 初始化本地数据库
+
+        console.log(
+            "Sleep Insight 已启动"
+        );
+
+
+
+
+
+        /**
+         * 初始化本地数据库
+         */
         Storage.init();
 
-        // 初始化路由
+
+
+
+
+        /**
+         * 数据结构迁移
+         */
+        Migration.run();
+
+
+
+
+
+        /**
+         * 初始化路由
+         */
         Router.init();
 
+
+
     }
+
+
 
 };
