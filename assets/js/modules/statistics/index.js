@@ -21,10 +21,21 @@ from "./service.js";
 
 
 
+import {
+    StatisticsCharts
+}
+from "./charts.js";
+
+
+
+
 export const Statistics = {
 
 
 
+    /**
+     * 渲染页面
+     */
     render(){
 
 
@@ -36,7 +47,12 @@ export const Statistics = {
 
 
 
+
+    /**
+     * 页面初始化
+     */
     init(){
+
 
 
         const week =
@@ -51,9 +67,11 @@ export const Statistics = {
 
 
 
+
         const best =
             StatisticsService
             .getBestSleep();
+
 
 
 
@@ -79,21 +97,31 @@ export const Statistics = {
 
 
 
+
+
         if(weekEl){
+
 
             weekEl.innerHTML =
                 `${week} h`;
 
+
         }
+
+
 
 
 
         if(monthEl){
 
+
             monthEl.innerHTML =
                 `${month} h`;
 
+
         }
+
+
 
 
 
@@ -112,7 +140,25 @@ export const Statistics = {
 
 
 
+
+
+        /**
+         * 初始化统计图表
+         *
+         * 等待DOM生成以后执行
+         */
+        setTimeout(()=>{
+
+
+            StatisticsCharts.init();
+
+
+        },0);
+
+
+
     }
+
 
 
 };
