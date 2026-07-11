@@ -1,24 +1,69 @@
 /**
  * ==========================================
  * Sleep Insight
- * Record 页面入口
+ * record/index.js
+ * 睡眠记录模块入口
  * ==========================================
  */
 
-import { renderRecordTemplate } from "./template.js";
+
+import { renderRecordTemplate } 
+from "./template.js";
+
+
+import { bindRecordEvents } 
+from "./events.js";
+
+
+import { RecordList } 
+from "./list.js";
+
+
 
 export const Record = {
 
+
+
+    /**
+     * 页面渲染
+     */
     render() {
+
 
         return renderRecordTemplate();
 
+
     },
 
+
+
+
+    /**
+     * 页面初始化
+     */
     init() {
 
-        console.log("Record 初始化");
+
+
+        // 绑定表单事件
+
+        bindRecordEvents(
+            () => {
+
+                RecordList.render();
+
+            }
+        );
+
+
+
+        // 加载记录列表
+
+        RecordList.render();
+
+
 
     }
+
 
 };
