@@ -1,9 +1,11 @@
 /**
  * ==========================================
  * Sleep Insight
+ *
  * dashboard.js
  *
- * Dashboard Experience v2
+ * Dashboard V2
+ *
  * ==========================================
  */
 
@@ -17,24 +19,21 @@ from "../charts/sleepChart.js";
 
 
 
+
 export const Dashboard = {
 
 
 
-    /**
-     * 页面渲染
-     */
     render(){
+
+
+        const score =
+            SleepAnalytics.getAverageScore();
 
 
 
         const averageSleep =
             SleepAnalytics.getAverageSleep();
-
-
-
-        const score =
-            SleepAnalytics.getAverageScore();
 
 
 
@@ -48,12 +47,12 @@ export const Dashboard = {
 
 
 
-        const todayDetail =
+        const today =
             SleepAnalytics.getTodayDetail();
 
 
 
-        const latestRecord =
+        const latest =
             SleepAnalytics.getLatestRecord();
 
 
@@ -71,10 +70,7 @@ export const Dashboard = {
 
 
 
-
-<!-- Welcome -->
-
-<div class="dashboard-header">
+<header class="dashboard-header">
 
 
 <h1>
@@ -86,20 +82,18 @@ Good evening 🌙
 
 <p>
 
-今天也来看看你的睡眠状态
+看看今天你的睡眠状态
 
 </p>
 
 
-</div>
+</header>
 
 
 
 
 
 
-
-<!-- Score Hero -->
 
 
 <div class="sleep-score-card">
@@ -121,6 +115,7 @@ Sleep Score
 
 
 
+
 <div class="sleep-status">
 
 ${status}
@@ -137,10 +132,10 @@ ${status}
 
 
 
-<!-- Metrics -->
-
 
 <div class="dashboard-grid">
+
+
 
 
 
@@ -154,13 +149,14 @@ ${status}
 </div>
 
 
-
-<div class="stat-value">
+<div class="metric-value">
 
 ${averageSleep}
 
-<span class="stat-unit">
+<span class="metric-unit">
+
 h
+
 </span>
 
 
@@ -184,15 +180,15 @@ h
 </div>
 
 
-
-<div class="stat-value">
+<div class="metric-value">
 
 ${days}
 
-<span class="stat-unit">
-天
-</span>
+<span class="metric-unit">
 
+天
+
+</span>
 
 </div>
 
@@ -209,22 +205,28 @@ ${days}
 
 <div class="stat-title">
 
-最近状态
+睡眠评分
+
+</div>
+
+
+<div class="metric-value">
+
+${score}
+
+<span class="metric-unit">
+
+分
+
+</span>
+
+</div>
+
 
 </div>
 
 
 
-<div class="stat-value">
-
-${status}
-
-</div>
-
-
-</div>
-
-
 
 </div>
 
@@ -234,16 +236,16 @@ ${status}
 
 
 
-
-
-<!-- Detail -->
 
 
 <div class="dashboard-content">
 
 
 
-<div class="card">
+
+
+
+<div class="detail-card">
 
 
 <h2 class="section-title">
@@ -255,52 +257,29 @@ ${status}
 
 
 ${
-todayDetail
-
+today
 ?
 
 `
 
 <p>
-
-🌙 入睡：
-
-${todayDetail.bedtime || "--"}
-
+睡眠时间：
+${today.bedtime || "--"}
+-
+${today.wakeTime || "--"}
 </p>
-
 
 
 <p>
-
-☀️ 起床：
-
-${todayDetail.wakeTime || "--"}
-
+睡眠时长：
+${today.duration} h
 </p>
-
 
 
 <p>
-
-⏱ 时长：
-
-${todayDetail.duration}
-
-h
-
+睡眠质量：
+⭐ ${today.quality}/10
 </p>
-
-
-
-<p>
-
-⭐ 质量：
-
-${todayDetail.quality}/10
-
-</p>
-
 
 `
 
@@ -309,9 +288,7 @@ ${todayDetail.quality}/10
 `
 
 <p>
-
-今天暂无睡眠记录
-
+暂无今日记录
 </p>
 
 `
@@ -320,7 +297,10 @@ ${todayDetail.quality}/10
 
 
 
+
 </div>
+
+
 
 
 
@@ -338,21 +318,11 @@ AI Insight
 </h2>
 
 
+
 <p>
 
-${
-
-score >= 85
-
-?
-
-"你的睡眠状态很好，继续保持稳定作息 🌙"
-
-:
-
-"建议保持固定睡眠时间，提高睡眠规律性"
-
-}
+根据你的最近睡眠数据，
+保持稳定作息有助于提升恢复质量。
 
 </p>
 
@@ -361,6 +331,10 @@ score >= 85
 
 
 
+
+
+
+
 </div>
 
 
@@ -368,11 +342,6 @@ score >= 85
 
 
 
-
-
-
-
-<!-- Chart -->
 
 
 <div class="card chart-card">
@@ -385,9 +354,7 @@ score >= 85
 </h2>
 
 
-
 <canvas id="sleep-chart"></canvas>
-
 
 
 </div>
@@ -415,10 +382,6 @@ score >= 85
 
 
 
-
-    /**
-     * 初始化
-     */
     init(){
 
 

@@ -1,0 +1,97 @@
+/* =========================================================
+   Sleep Insight
+
+   animation.css
+
+   ========================================================= */
+
+
+   #view {
+
+
+    animation:
+
+
+        fadeIn .35s ease;
+
+
+
+}
+
+
+
+.page-enter {
+
+
+    animation:
+
+
+        pageEnter .35s ease;
+
+
+
+}
+
+
+
+
+@keyframes pageEnter {
+
+
+    from {
+
+
+        opacity:
+
+
+            0;
+
+
+
+        transform:
+
+
+            translateY(10px);
+
+
+
+    }
+
+
+
+    to {
+
+
+        opacity:
+
+
+            1;
+
+
+
+        transform:
+
+
+            translateY(0);
+
+
+
+    }
+
+
+
+}
+
+
+
+.fade-enter {
+
+
+    opacity:
+
+
+        0;
+
+
+
+}
