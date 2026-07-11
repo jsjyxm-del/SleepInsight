@@ -20,7 +20,7 @@ from "../modules/statistics/index.js";
 
 
 import { ExportModule }
-from "../modules/export.js";
+from "../modules/export/index.js";
 
 
 
@@ -71,6 +71,7 @@ export const Router = {
         const hash =
             location.hash ||
             "#dashboard";
+
 
 
 
@@ -148,6 +149,10 @@ export const Router = {
 
                 view.innerHTML =
                     ExportModule.render();
+
+
+
+                ExportModule.init();
 
 
 
